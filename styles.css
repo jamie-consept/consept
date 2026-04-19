@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800&display=swap');
 
+/* ── Variables ─────────────────────────────────── */
 :root {
   --bg:        #0a0a0a;
   --bg-2:      #111111;
@@ -19,6 +20,7 @@
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ── Reset ─────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -32,6 +34,7 @@ body {
   position: relative;
 }
 
+/* Grain texture */
 body::before {
   content: '';
   position: fixed;
@@ -49,7 +52,7 @@ img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
-/* Nav */
+/* ── Nav ───────────────────────────────────────── */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -146,19 +149,15 @@ nav {
 
 .nav-cta:hover .nav-cta-icon svg { transform: rotate(0deg); }
 
+/* ── Main ──────────────────────────────────────── */
 main { padding-top: var(--nav-h); }
 .container {
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 0 2rem;
 }
-.container-narrow {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
 
-/* Hero */
+/* ── Hero ──────────────────────────────────────── */
 .hero {
   min-height: calc(100vh - var(--nav-h));
   display: flex;
@@ -204,7 +203,7 @@ main { padding-top: var(--nav-h); }
   font-weight: 300;
 }
 
-/* Pill button (nutmilk style) */
+/* ── Pill button (EXACT nutmilk copy) ───────────── */
 .btn-pill {
   position: relative;
   display: inline-flex;
@@ -233,20 +232,24 @@ main { padding-top: var(--nav-h); }
   inset: 0;
   background: #ffffff;
   transform: translateX(101%);
-  transition: transform 0.4s var(--ease);
-  z-index: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 0;
 }
 
 .btn-pill:hover::before { transform: translateX(0); }
 .btn-pill:hover { border-color: #ffffff; color: #0a0a0a; }
 
-.btn-pill-text,
+.btn-pill-text {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s;
+}
+
+.btn-pill:hover .btn-pill-text { color: #0a0a0a; }
+
 .btn-pill-icon {
   position: relative;
   z-index: 1;
-}
-
-.btn-pill-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -261,13 +264,13 @@ main { padding-top: var(--nav-h); }
 
 .btn-pill-icon svg {
   transform: rotate(-45deg);
-  transition: transform 0.4s var(--ease);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-pill:hover .btn-pill-icon { background: #0a0a0a; color: #ffffff; }
 .btn-pill:hover .btn-pill-icon svg { transform: rotate(0deg); }
 
-/* Sections */
+/* ── Sections ──────────────────────────────────── */
 .label {
   font-size: 0.68rem;
   font-weight: 600;
@@ -311,6 +314,7 @@ main { padding-top: var(--nav-h); }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.25rem;
+  margin-top: 3.5rem;
 }
 
 .card {
@@ -352,18 +356,17 @@ main { padding-top: var(--nav-h); }
   font-weight: 300;
 }
 
-/* Difference section - gradient background */
+/* ── Difference (gradient background) ─────────── */
 .difference {
   padding: 6rem 0;
   background: linear-gradient(180deg, #f8fafc 0%, #e0f2fe 100%);
-  position: relative;
 }
 
 .difference .section-title {
   color: #0a0a0a;
 }
 
-.difference .grid {
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
@@ -394,27 +397,29 @@ main { padding-top: var(--nav-h); }
   color: #334155;
 }
 
-/* Pricing */
+/* ── Pricing (nutmilk exact copy) ─────────────── */
 .pricing {
   padding: 6rem 0;
 }
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
   margin-top: 4rem;
+  align-items: stretch;
 }
 
 .pricing-card {
   background: var(--accent-fill);
   border: 1px solid var(--accent-glow);
-  border-radius: 16px;
-  padding: 2.5rem;
-  position: relative;
-  overflow: hidden;
+  border-radius: 20px;
+  padding: 2.25rem;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s var(--ease);
 }
 
 .pricing-card::before {
@@ -422,92 +427,172 @@ main { padding-top: var(--nav-h); }
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(96,165,250,0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(96,165,250,0.35), transparent);
+}
+
+.pricing-card:hover {
+  border-color: rgba(96,165,250,0.3);
+  transform: translateY(-4px);
 }
 
 .pricing-card-popular {
-  border-color: rgba(96,165,250,0.4);
-  background: rgba(96,165,250,0.08);
+  background: rgba(74, 222, 128, 0.04);
+  border-color: rgba(74, 222, 128, 0.25);
+}
+
+.pricing-card-popular::before {
+  background: linear-gradient(90deg, transparent, rgba(74,222,128,0.4), transparent);
+}
+
+.pricing-card-popular:hover {
+  background: rgba(74, 222, 128, 0.08);
+  border-color: rgba(74, 222, 128, 0.45);
 }
 
 .pricing-badge {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: rgba(96,165,250,0.15);
-  padding: 0.35rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  background: rgba(74, 222, 128, 0.15);
+  border: 1px solid rgba(74, 222, 128, 0.35);
   border-radius: 999px;
-}
-
-.pricing-card h3 {
-  font-size: 1.3rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.6rem;
   font-weight: 600;
-  color: var(--white);
-  margin-bottom: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4ade80;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.pricing-desc {
+.pricing-card-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-service-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--white);
+  margin-bottom: 0.4rem;
+}
+
+.pricing-sub {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.pricing-price-block {
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.pricing-was {
   font-size: 0.88rem;
   color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 2rem;
+  text-decoration: line-through;
+  margin-bottom: 0.25rem;
+  font-weight: 300;
 }
 
-.pricing-amount {
+.pricing-now {
   display: flex;
   align-items: baseline;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  gap: 0.4rem;
 }
 
-.pricing-from {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  font-weight: 400;
-}
-
-.pricing-price {
-  font-size: 2.5rem;
-  font-weight: 700;
+.pricing-currency {
+  font-size: 1.2rem;
+  font-weight: 600;
   color: var(--white);
-  font-family: var(--font-display);
   letter-spacing: -0.02em;
 }
 
-.pricing-asterisk {
-  font-size: 1.5rem;
-  color: var(--text-muted);
+.pricing-amount {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .pricing-note {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   color: var(--text-muted);
+  margin-top: 0.4rem;
+  font-weight: 300;
+}
+
+.pricing-includes {
+  flex: 1;
   margin-bottom: 2rem;
 }
 
-.pricing-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.85rem 2rem;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 999px;
-  color: var(--text);
-  font-size: 0.82rem;
-  font-weight: 500;
-  transition: border-color 0.2s, background 0.2s;
-  margin-top: auto;
+.pricing-includes-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
 }
 
-.pricing-cta:hover {
-  border-color: var(--accent);
-  background: rgba(96,165,250,0.1);
+.pricing-includes ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pricing-includes li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.pricing-includes li::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(96,165,250,0.15);
+  border: 1px solid rgba(96,165,250,0.3);
+  flex-shrink: 0;
+  margin-top: 1px;
+  background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 4L3 5.5L6.5 2' stroke='%2360a5fa' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.pricing-card-popular .pricing-includes li::before {
+  background-color: rgba(74, 222, 128, 0.15);
+  border-color: rgba(74, 222, 128, 0.35);
+  background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 4L3 5.5L6.5 2' stroke='%234ade80' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.pricing-card-popular .pricing-includes-label {
+  color: #4ade80;
+}
+
+.pricing-card .btn-pill {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.pricing-card-popular .btn-pill {
+  border-color: rgba(74, 222, 128, 0.3);
+}
+
+.pricing-card-popular .btn-pill:hover {
+  border-color: #4ade80;
 }
 
 .cta-section {
@@ -519,7 +604,7 @@ main { padding-top: var(--nav-h); }
   margin-bottom: 3rem;
 }
 
-/* Contact */
+/* ── Contact ───────────────────────────────────── */
 .contact-hero {
   padding: 5rem 2rem 4rem;
 }
@@ -599,6 +684,7 @@ main { padding-top: var(--nav-h); }
   cursor: pointer;
 }
 
+/* ── Footer ────────────────────────────────────── */
 footer {
   border-top: 1px solid var(--border);
   padding: 4rem 2rem;
@@ -610,12 +696,21 @@ footer p {
   font-weight: 300;
 }
 
+/* ── Responsive ────────────────────────────────── */
+@media (max-width: 900px) {
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 @media (max-width: 768px) {
   .hero { padding: 4rem 1.5rem 3rem; }
   .services { padding: 4rem 0; }
   .card-grid { grid-template-columns: 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; }
-  .difference .grid { grid-template-columns: 1fr; }
-  .container, .container-narrow { padding: 0 1.5rem; }
+  .grid { grid-template-columns: 1fr; }
+  .container { padding: 0 1.5rem; }
   nav .nav-inner { padding: 0 1.5rem; }
 }
