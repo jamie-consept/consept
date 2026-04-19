@@ -4,13 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact — Consept</title>
-    <meta name="description" content="Get in touch to discuss your project. I work with purposeful businesses on UX design, automation, and frontend development.">
+    <meta name="description" content="Get in touch to discuss your project. We work with purposeful businesses on UX design, automation, and frontend development.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav>
         <div class="container">
-            <a href="/" class="logo">Consept</a>
+            <a href="/" class="logo">
+                <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M28 16C28 9.37258 22.6274 4 16 4C15.3096 4 14.6327 4.05698 13.9736 4.16692L14.5 6.85L12.7 7.5L12 4.8C9.8 5.8 8 7.5 6.8 9.6L9 11L8 12.5L5.8 11.1C5.3 12.3 5 13.6 5 15H8V17H5C5 18.4 5.3 19.7 5.8 20.9L8 19.5L9 21L6.8 22.4C8 24.5 9.8 26.2 12 27.2L12.7 24.5L14.5 25.15L13.9736 27.8331C14.6327 27.943 15.3096 28 16 28C22.6274 28 28 22.6274 28 16Z" fill="currentColor"/>
+                    <path d="M15.5 2L16.5 2L17 4L15 4L15.5 2Z" fill="currentColor"/>
+                    <path d="M19.5 2.5L20.3 3.3L19 5.5L17.8 4.3L19.5 2.5Z" fill="currentColor"/>
+                    <path d="M23 4.5L23.7 5.5L21.8 7L20.7 5.8L23 4.5Z" fill="currentColor"/>
+                    <path d="M26 7.5L26.5 8.5L24 10L23 8.5L26 7.5Z" fill="currentColor"/>
+                    <path d="M28.2 11L28.5 12L25.5 13L25 11.5L28.2 11Z" fill="currentColor"/>
+                    <path d="M29.5 15L29.5 16L27 16L27 15L29.5 15Z" fill="currentColor"/>
+                </svg>
+                <span>Consept</span>
+            </a>
             <a href="/contact.html" class="nav-link">Contact</a>
         </div>
     </nav>
@@ -19,7 +31,7 @@
         <section class="contact-hero">
             <div class="container">
                 <h1>Let's talk</h1>
-                <p class="lead">Tell me about your project and I'll get back to you within 24 hours.</p>
+                <p class="lead">Tell us about your project and we'll get back to you within 24 hours.</p>
             </div>
         </section>
 
@@ -28,36 +40,37 @@
                 <form action="https://formspree.io/f/xpqkrkzl" method="POST" class="contact-form">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" placeholder="Jamie Smith" required>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" placeholder="jamie@company.com" required>
                     </div>
 
                     <div class="form-group">
                         <label for="company">Company (optional)</label>
-                        <input type="text" id="company" name="company">
+                        <input type="text" id="company" name="company" placeholder="Your Company Ltd">
                     </div>
 
                     <div class="form-group">
-                        <label for="project">Tell me about your project</label>
-                        <textarea id="project" name="project" rows="6" required></textarea>
+                        <label for="project">Tell us about your project</label>
+                        <textarea id="project" name="project" rows="6" placeholder="We're looking to automate our customer onboarding process and improve our website conversion..." required></textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="budget">Budget range</label>
                         <select id="budget" name="budget" required>
                             <option value="">Select a range</option>
-                            <option value="3k-5k">£3k - £5k</option>
-                            <option value="5k-10k">£5k - £10k</option>
-                            <option value="10k+">£10k+</option>
+                            <option value="<£1k">Under £1k</option>
+                            <option value="£1k-£3k">£1k - £3k</option>
+                            <option value="£3k-£5k">£3k - £5k</option>
+                            <option value="£5k+">£5k+</option>
                             <option value="not-sure">Not sure yet</option>
                         </select>
                     </div>
 
-                    <button type="submit" class="cta-button">Send message</button>
+                    <button type="submit" class="cta-button">Send Message</button>
                 </form>
             </div>
         </section>

@@ -1,0 +1,11 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Half cog forming "C" shape -->
+  <path d="M28 16C28 9.37258 22.6274 4 16 4C15.3096 4 14.6327 4.05698 13.9736 4.16692L14.5 6.85L12.7 7.5L12 4.8C9.8 5.8 8 7.5 6.8 9.6L9 11L8 12.5L5.8 11.1C5.3 12.3 5 13.6 5 15H8V17H5C5 18.4 5.3 19.7 5.8 20.9L8 19.5L9 21L6.8 22.4C8 24.5 9.8 26.2 12 27.2L12.7 24.5L14.5 25.15L13.9736 27.8331C14.6327 27.943 15.3096 28 16 28C22.6274 28 28 22.6274 28 16Z" fill="currentColor"/>
+  <!-- Gear teeth on outer edge -->
+  <path d="M15.5 2L16.5 2L17 4L15 4L15.5 2Z" fill="currentColor"/>
+  <path d="M19.5 2.5L20.3 3.3L19 5.5L17.8 4.3L19.5 2.5Z" fill="currentColor"/>
+  <path d="M23 4.5L23.7 5.5L21.8 7L20.7 5.8L23 4.5Z" fill="currentColor"/>
+  <path d="M26 7.5L26.5 8.5L24 10L23 8.5L26 7.5Z" fill="currentColor"/>
+  <path d="M28.2 11L28.5 12L25.5 13L25 11.5L28.2 11Z" fill="currentColor"/>
+  <path d="M29.5 15L29.5 16L27 16L27 15L29.5 15Z" fill="currentColor"/>
+</svg>
