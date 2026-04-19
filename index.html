@@ -10,7 +10,7 @@
 </head>
 <body>
     <nav>
-        <div class="container">
+        <div class="nav-inner">
             <a href="/" class="logo">
                 <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M16 4C14.8 4 13.6667 4.13333 12.6 4.4L13.2 7.2L11 8L10 4.8C7.2 6 5 8.26667 3.6 11.2L6.4 12.8L5.2 14.4L2.4 12.8C2.13333 13.8667 2 15 2 16.2C2 16.4 2 16.6 2 16.8V17.2C2 17.4 2 17.6 2 17.8C2.13333 19 2.4 20.1333 2.8 21.2L5.6 19.6L6.8 21.2L4 22.8C5.33333 25.7333 7.6 28 10.4 29.2L11.4 26L13.6 26.8L12.8 30C13.8667 30.2667 15 30.4 16.2 30.4C22.9333 30.2667 28.2667 24.8 28.4 18.0667V16C28.4 9.26667 22.9333 3.86667 16.2 4C16.1333 4 16.0667 4 16 4Z" fill="currentColor"/>
@@ -21,7 +21,14 @@
                 </svg>
                 <span>Consept</span>
             </a>
-            <a href="/contact" class="nav-link">Contact</a>
+            <a href="/contact" class="nav-cta">
+                <span class="nav-cta-text">Get in Touch</span>
+                <span class="nav-cta-icon">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 13L13 1M13 1H3.5M13 1V10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </a>
         </div>
     </nav>
 
@@ -30,45 +37,55 @@
             <div class="container">
                 <h1>Get your time back.<br>Grow without burning out.</h1>
                 <p class="lead">We help purposeful businesses automate the boring stuff so they can focus on what matters.</p>
-                <a href="/contact" class="cta-button">Let's talk</a>
+                <a href="/contact" class="btn-pill">
+                    <span class="btn-pill-text">Let's talk</span>
+                    <span class="btn-pill-icon">
+                        <svg width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 13L13 1M13 1H3.5M13 1V10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </a>
             </div>
         </section>
 
         <section class="services">
             <div class="container">
-                <h2>What we do</h2>
-                <div class="grid">
-                    <div class="service-card">
-                        <h3>Fix websites that don't convert</h3>
-                        <p>Clean, minimal interfaces that actually work. UX design meets conversion optimization.</p>
+                <span class="label">WHAT WE DO</span>
+                <h2 class="section-title">Three ways we make<br><em>your business better</em></h2>
+                <p class="section-sub">Whether you need a brand refresh, an AI shortcut, or an honest eye on your design, we've got you.</p>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 1.5rem; color: var(--accent);">
+                            <path d="M21 21l-4.35-4.35m2.35-5.65a8 8 0 11-16 0 8 8 0 0116 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <h3>UX Review</h3>
+                        <p>A sharp, honest audit of your existing website or brand, with a clear action plan to fix what's holding you back.</p>
                     </div>
-                    <div class="service-card">
-                        <h3>Automate workflows</h3>
-                        <p>Get 10+ hours back per week. We spot where AI can replace manual work and build it for you.</p>
+
+                    <div class="card">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 1.5rem; color: var(--accent);">
+                            <rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 2v4M16 2v4M4 10h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <h3>Website Build</h3>
+                        <p>A fast, clean, custom website built to represent your business and convert visitors into paying customers.</p>
                     </div>
-                    <div class="service-card">
-                        <h3>Build tools that multiply capacity</h3>
-                        <p>Templates, systems, and automation that let you do more with less.</p>
+
+                    <div class="card">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 1.5rem; color: var(--accent);">
+                            <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <h3>Automation Programme</h3>
+                        <p>We plug AI into the repetitive parts of your business so you can spend your time on the things only you can do.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="about">
-            <div class="container">
-                <h2>Who we work with</h2>
-                <ul class="feature-list">
-                    <li>Purpose-driven companies and B-corps</li>
-                    <li>£3k+ projects</li>
-                    <li>Teams that value craft, care, and close collaboration</li>
-                    <li>Businesses that want to grow without burning out</li>
-                </ul>
-            </div>
-        </section>
-
         <section class="difference">
             <div class="container">
-                <h2>How we're different</h2>
+                <h2 class="section-title">How we're different</h2>
                 <div class="grid">
                     <div class="difference-item">
                         <p>We're not a corporate agency — we're a small team that gives a shit</p>
@@ -86,10 +103,61 @@
             </div>
         </section>
 
+        <section class="pricing">
+            <div class="container">
+                <h2 class="section-title">Simple, transparent pricing</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3>UX Review</h3>
+                        <p class="pricing-desc">A sharp, honest audit of your existing website or brand — with a clear action plan to fix it.</p>
+                        <div class="pricing-amount">
+                            <span class="pricing-from">from</span>
+                            <span class="pricing-price">£399</span>
+                            <span class="pricing-asterisk">*</span>
+                        </div>
+                        <p class="pricing-note">One-off project · Delivered in 5 working days</p>
+                        <a href="/contact" class="pricing-cta">Get in Touch</a>
+                    </div>
+
+                    <div class="pricing-card pricing-card-popular">
+                        <span class="pricing-badge">MOST POPULAR</span>
+                        <h3>Website Build</h3>
+                        <p class="pricing-desc">A fast, clean, custom website built to represent your business and convert visitors.</p>
+                        <div class="pricing-amount">
+                            <span class="pricing-from">from</span>
+                            <span class="pricing-price">£1,499</span>
+                            <span class="pricing-asterisk">*</span>
+                        </div>
+                        <p class="pricing-note">One-off project · Delivered in 2-3 weeks</p>
+                        <a href="/contact" class="pricing-cta">Get in Touch</a>
+                    </div>
+
+                    <div class="pricing-card">
+                        <h3>Automation Programme</h3>
+                        <p class="pricing-desc">A full AI audit and implementation programme that saves you hours every single week.</p>
+                        <div class="pricing-amount">
+                            <span class="pricing-from">from</span>
+                            <span class="pricing-price">£2,999</span>
+                            <span class="pricing-asterisk">*</span>
+                        </div>
+                        <p class="pricing-note">One-off project · Delivered over 4 weeks</p>
+                        <a href="/contact" class="pricing-cta">Get in Touch</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="cta-section">
             <div class="container">
-                <h2>Ready to get your time back?</h2>
-                <a href="/contact" class="cta-button">Let's talk</a>
+                <h2 class="section-title">Ready to get your time back?</h2>
+                <a href="/contact" class="btn-pill">
+                    <span class="btn-pill-text">Let's talk</span>
+                    <span class="btn-pill-icon">
+                        <svg width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 13L13 1M13 1H3.5M13 1V10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </a>
             </div>
         </section>
     </main>

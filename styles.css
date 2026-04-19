@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800&display=swap');
 
-/* ── Variables ─────────────────────────────────── */
 :root {
   --bg:        #0a0a0a;
   --bg-2:      #111111;
@@ -13,16 +12,13 @@
   --accent-glow: rgba(96, 165, 250, 0.15);
   --accent-fill: rgba(96, 165, 250, 0.04);
   --white:     #ffffff;
-
   --font-display: 'DM Sans', sans-serif;
   --font-body:    'Inter', sans-serif;
-
   --max-w: 1100px;
   --nav-h: 72px;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ── Reset ─────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -36,7 +32,6 @@ body {
   position: relative;
 }
 
-/* Grain texture overlay */
 body::before {
   content: '';
   position: fixed;
@@ -54,20 +49,25 @@ img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
-/* ── Nav ───────────────────────────────────────── */
+/* Nav */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
   height: var(--nav-h);
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 3rem;
-  background: rgba(10,10,10,0.95);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
 }
 
 .logo {
@@ -86,18 +86,66 @@ nav {
   height: 24px;
 }
 
-.nav-link {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  font-weight: 400;
-  transition: color 0.2s;
+.nav-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 0.45rem 0.45rem 0.45rem 1rem;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+  overflow: hidden;
+  transition: border-color 0.3s, color 0.3s;
+  isolation: isolate;
 }
 
-.nav-link:hover {
-  color: var(--text);
+.nav-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  transform: translateX(101%);
+  transition: transform 0.4s var(--ease);
+  z-index: 0;
 }
 
-/* ── Page wrapper ──────────────────────────────── */
+.nav-cta:hover::before { transform: translateX(0); }
+.nav-cta:hover { border-color: #ffffff; color: #0a0a0a; }
+
+.nav-cta-text,
+.nav-cta-icon {
+  position: relative;
+  z-index: 1;
+}
+
+.nav-cta-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  flex-shrink: 0;
+  transition: background 0.3s, color 0.3s;
+}
+
+.nav-cta-icon svg {
+  transform: rotate(-45deg);
+  transition: transform 0.4s var(--ease);
+}
+
+.nav-cta:hover .nav-cta-icon {
+  background: rgba(0,0,0,0.12);
+}
+
+.nav-cta:hover .nav-cta-icon svg { transform: rotate(0deg); }
+
 main { padding-top: var(--nav-h); }
 .container {
   max-width: var(--max-w);
@@ -110,7 +158,7 @@ main { padding-top: var(--nav-h); }
   padding: 0 2rem;
 }
 
-/* ── Hero ──────────────────────────────────────── */
+/* Hero */
 .hero {
   min-height: calc(100vh - var(--nav-h));
   display: flex;
@@ -131,17 +179,6 @@ main { padding-top: var(--nav-h); }
   pointer-events: none;
 }
 
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: -20%;
-  left: -5%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(96,165,250,0.03) 0%, transparent 70%);
-  pointer-events: none;
-}
-
 .hero .container {
   position: relative;
   z-index: 1;
@@ -159,7 +196,7 @@ main { padding-top: var(--nav-h); }
 }
 
 .lead {
-  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-size: clamp(1rem, 2vw, 1.25rem);
   color: var(--text-muted);
   max-width: 640px;
   margin-bottom: 3rem;
@@ -167,8 +204,8 @@ main { padding-top: var(--nav-h); }
   font-weight: 300;
 }
 
-/* ── Pill CTA button (like nutmilk) ─────────────── */
-.cta-button {
+/* Pill button (nutmilk style) */
+.btn-pill {
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -190,28 +227,26 @@ main { padding-top: var(--nav-h); }
   isolation: isolate;
 }
 
-.cta-button::before {
+.btn-pill::before {
   content: '';
   position: absolute;
   inset: 0;
   background: #ffffff;
   transform: translateX(101%);
   transition: transform 0.4s var(--ease);
+  z-index: 0;
 }
 
-.cta-button:hover::before {
-  transform: translateX(0);
-}
+.btn-pill:hover::before { transform: translateX(0); }
+.btn-pill:hover { border-color: #ffffff; color: #0a0a0a; }
 
-.cta-button:hover {
-  border-color: #ffffff;
-  color: #0a0a0a;
-}
-
-.cta-button::after {
-  content: '';
+.btn-pill-text,
+.btn-pill-icon {
   position: relative;
   z-index: 1;
+}
+
+.btn-pill-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -219,18 +254,28 @@ main { padding-top: var(--nav-h); }
   height: 34px;
   border-radius: 50%;
   background: rgba(255,255,255,0.1);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
   flex-shrink: 0;
-  transition: background 0.3s;
 }
 
-.cta-button:hover::after {
-  background: #0a0a0a;
+.btn-pill-icon svg {
+  transform: rotate(-45deg);
+  transition: transform 0.4s var(--ease);
 }
 
-/* ── Sections ──────────────────────────────────── */
-section {
-  padding: 6rem 0;
-  position: relative;
+.btn-pill:hover .btn-pill-icon { background: #0a0a0a; color: #ffffff; }
+.btn-pill:hover .btn-pill-icon svg { transform: rotate(0deg); }
+
+/* Sections */
+.label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  display: block;
 }
 
 .section-title {
@@ -240,17 +285,35 @@ section {
   letter-spacing: -0.03em;
   font-weight: 700;
   color: var(--white);
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
 }
 
-/* ── Cards (glass effect) ──────────────────────── */
-.grid {
+.section-title em {
+  font-style: italic;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+.section-sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 48ch;
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 3.5rem;
+}
+
+.services {
+  padding: 6rem 0;
+}
+
+.card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
-.service-card {
+.card {
   background: var(--accent-fill);
   border: 1px solid var(--accent-glow);
   border-radius: 16px;
@@ -260,7 +323,7 @@ section {
   overflow: hidden;
 }
 
-.service-card::before {
+.card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
@@ -268,13 +331,13 @@ section {
   background: linear-gradient(90deg, transparent, rgba(96,165,250,0.3), transparent);
 }
 
-.service-card:hover {
+.card:hover {
   background: rgba(96,165,250,0.07);
   border-color: rgba(96,165,250,0.3);
   transform: translateY(-3px);
 }
 
-.service-card h3 {
+.card h3 {
   font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -282,47 +345,38 @@ section {
   margin-bottom: 0.75rem;
 }
 
-.service-card p {
+.card p {
   font-size: 0.88rem;
   color: var(--text-muted);
   line-height: 1.7;
   font-weight: 300;
 }
 
-/* ── About section (light) ─────────────────────── */
-.about {
-  background: var(--white);
+/* Difference section - gradient background */
+.difference {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, #f8fafc 0%, #e0f2fe 100%);
+  position: relative;
+}
+
+.difference .section-title {
   color: #0a0a0a;
 }
 
-.about .section-title {
-  color: #0a0a0a;
+.difference .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
-.feature-list {
-  max-width: 720px;
-}
-
-.feature-list li {
-  padding: 1.8rem 0;
-  border-bottom: 1px solid #e5e5e5;
-  font-size: 1.05rem;
-  font-weight: 400;
-  color: #0a0a0a;
-}
-
-.feature-list li:last-child {
-  border-bottom: none;
-}
-
-/* ── Difference ────────────────────────────────── */
 .difference-item {
   padding: 2.5rem;
-  background: var(--accent-fill);
+  background: rgba(255,255,255,0.6);
   border-radius: 16px;
-  border: 1px solid var(--accent-glow);
+  border: 1px solid rgba(96,165,250,0.2);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
 .difference-item::before {
@@ -330,17 +384,132 @@ section {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(96,165,250,0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(96,165,250,0.4), transparent);
 }
 
 .difference-item p {
   font-size: 1.05rem;
   font-weight: 300;
   line-height: 1.7;
+  color: #334155;
+}
+
+/* Pricing */
+.pricing {
+  padding: 6rem 0;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.pricing-card {
+  background: var(--accent-fill);
+  border: 1px solid var(--accent-glow);
+  border-radius: 16px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(96,165,250,0.3), transparent);
+}
+
+.pricing-card-popular {
+  border-color: rgba(96,165,250,0.4);
+  background: rgba(96,165,250,0.08);
+}
+
+.pricing-badge {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(96,165,250,0.15);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+}
+
+.pricing-card h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+.pricing-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.pricing-amount {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-from {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.pricing-price {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+.pricing-asterisk {
+  font-size: 1.5rem;
   color: var(--text-muted);
 }
 
-/* ── CTA Section ───────────────────────────────── */
+.pricing-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.pricing-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 2rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: border-color 0.2s, background 0.2s;
+  margin-top: auto;
+}
+
+.pricing-cta:hover {
+  border-color: var(--accent);
+  background: rgba(96,165,250,0.1);
+}
+
 .cta-section {
   text-align: center;
   padding: 10rem 0;
@@ -350,7 +519,7 @@ section {
   margin-bottom: 3rem;
 }
 
-/* ── Contact ───────────────────────────────────── */
+/* Contact */
 .contact-hero {
   padding: 5rem 2rem 4rem;
 }
@@ -430,7 +599,6 @@ section {
   cursor: pointer;
 }
 
-/* ── Footer ────────────────────────────────────── */
 footer {
   border-top: 1px solid var(--border);
   padding: 4rem 2rem;
@@ -442,26 +610,12 @@ footer p {
   font-weight: 300;
 }
 
-/* ── Responsive ────────────────────────────────── */
 @media (max-width: 768px) {
-  .hero {
-    padding: 4rem 1.5rem 3rem;
-  }
-
-  section {
-    padding: 4rem 0;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .container,
-  .container-narrow {
-    padding: 0 1.5rem;
-  }
-
-  nav {
-    padding: 0 1.5rem;
-  }
+  .hero { padding: 4rem 1.5rem 3rem; }
+  .services { padding: 4rem 0; }
+  .card-grid { grid-template-columns: 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .difference .grid { grid-template-columns: 1fr; }
+  .container, .container-narrow { padding: 0 1.5rem; }
+  nav .nav-inner { padding: 0 1.5rem; }
 }
