@@ -86,15 +86,46 @@ nav {
   height: 24px;
 }
 
+/* Nav CTA with spinning border (nutmilk style) */
+.nav-cta-wrap {
+  position: relative;
+  border-radius: 999px;
+  padding: 2px;
+  overflow: hidden;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.nav-cta-spinner {
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    #1A8FE3 15%,
+    #2CB89A 35%,
+    #3BBFA0 45%,
+    transparent 55%,
+    transparent 100%
+  );
+  animation: spinGlow 4s linear infinite;
+}
+
+@keyframes spinGlow {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .nav-cta {
   position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.82rem;
   font-weight: 500;
   color: #ffffff;
-  background: transparent;
+  background: #0a0a0a;
   border: 1px solid rgba(255,255,255,0.15);
   padding: 0.45rem 0.45rem 0.45rem 1rem;
   border-radius: 999px;
