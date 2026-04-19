@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700;1,9..40,800&display=swap');
 
-/* ── Variables ─────────────────────────────────── */
 :root {
   --bg:        #0a0a0a;
   --bg-2:      #111111;
@@ -20,7 +19,6 @@
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ── Reset ─────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
@@ -34,7 +32,6 @@ body {
   position: relative;
 }
 
-/* Grain texture */
 body::before {
   content: '';
   position: fixed;
@@ -52,7 +49,7 @@ img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
-/* ── Nav ───────────────────────────────────────── */
+/* Nav */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -149,7 +146,6 @@ nav {
 
 .nav-cta:hover .nav-cta-icon svg { transform: rotate(0deg); }
 
-/* ── Main ──────────────────────────────────────── */
 main { padding-top: var(--nav-h); }
 .container {
   max-width: var(--max-w);
@@ -157,7 +153,7 @@ main { padding-top: var(--nav-h); }
   padding: 0 2rem;
 }
 
-/* ── Hero ──────────────────────────────────────── */
+/* Hero */
 .hero {
   min-height: calc(100vh - var(--nav-h));
   display: flex;
@@ -203,7 +199,7 @@ main { padding-top: var(--nav-h); }
   font-weight: 300;
 }
 
-/* ── Pill button (EXACT nutmilk copy) ───────────── */
+/* Pill button - EXACT NUTMILK STYLING */
 .btn-pill {
   position: relative;
   display: inline-flex;
@@ -270,7 +266,7 @@ main { padding-top: var(--nav-h); }
 .btn-pill:hover .btn-pill-icon { background: #0a0a0a; color: #ffffff; }
 .btn-pill:hover .btn-pill-icon svg { transform: rotate(0deg); }
 
-/* ── Sections ──────────────────────────────────── */
+/* Sections */
 .label {
   font-size: 0.68rem;
   font-weight: 600;
@@ -356,17 +352,18 @@ main { padding-top: var(--nav-h); }
   font-weight: 300;
 }
 
-/* ── Difference (gradient background) ─────────── */
+/* Difference section - gradient background */
 .difference {
   padding: 6rem 0;
   background: linear-gradient(180deg, #f8fafc 0%, #e0f2fe 100%);
+  position: relative;
 }
 
 .difference .section-title {
   color: #0a0a0a;
 }
 
-.grid {
+.difference .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
@@ -397,7 +394,7 @@ main { padding-top: var(--nav-h); }
   color: #334155;
 }
 
-/* ── Pricing (nutmilk exact copy) ─────────────── */
+/* Pricing - EXACT NUTMILK STYLING */
 .pricing {
   padding: 6rem 0;
 }
@@ -435,32 +432,23 @@ main { padding-top: var(--nav-h); }
   transform: translateY(-4px);
 }
 
-.pricing-card-popular {
-  background: rgba(74, 222, 128, 0.04);
-  border-color: rgba(74, 222, 128, 0.25);
-}
-
-.pricing-card-popular::before {
-  background: linear-gradient(90deg, transparent, rgba(74,222,128,0.4), transparent);
-}
-
-.pricing-card-popular:hover {
-  background: rgba(74, 222, 128, 0.08);
-  border-color: rgba(74, 222, 128, 0.45);
+.pricing-card.featured {
+  background: rgba(96,165,250,0.08);
+  border-color: rgba(96,165,250,0.35);
 }
 
 .pricing-badge {
   display: inline-flex;
   align-items: center;
-  background: rgba(74, 222, 128, 0.15);
-  border: 1px solid rgba(74, 222, 128, 0.35);
+  background: rgba(96,165,250,0.15);
+  border: 1px solid rgba(96,165,250,0.3);
   border-radius: 999px;
   padding: 0.2rem 0.6rem;
   font-size: 0.6rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #4ade80;
+  color: var(--accent);
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -567,19 +555,12 @@ main { padding-top: var(--nav-h); }
   border: 1px solid rgba(96,165,250,0.3);
   flex-shrink: 0;
   margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 4L3 5.5L6.5 2' stroke='%2360a5fa' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: center;
-}
-
-.pricing-card-popular .pricing-includes li::before {
-  background-color: rgba(74, 222, 128, 0.15);
-  border-color: rgba(74, 222, 128, 0.35);
-  background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 4L3 5.5L6.5 2' stroke='%234ade80' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-}
-
-.pricing-card-popular .pricing-includes-label {
-  color: #4ade80;
 }
 
 .pricing-card .btn-pill {
@@ -587,12 +568,31 @@ main { padding-top: var(--nav-h); }
   justify-content: space-between;
 }
 
-.pricing-card-popular .btn-pill {
-  border-color: rgba(74, 222, 128, 0.3);
+/* Green highlight for Website Build */
+.pricing-card.green {
+  background: rgba(74, 222, 128, 0.04);
+  border-color: rgba(74, 222, 128, 0.25);
 }
 
-.pricing-card-popular .btn-pill:hover {
-  border-color: #4ade80;
+.pricing-card.green::before {
+  background: linear-gradient(90deg, transparent, rgba(74,222,128,0.4), transparent);
+}
+
+.pricing-card.green:hover {
+  background: rgba(74, 222, 128, 0.08);
+  border-color: rgba(74, 222, 128, 0.45);
+}
+
+.pricing-card.green .pricing-badge {
+  background: rgba(74, 222, 128, 0.15);
+  border-color: rgba(74, 222, 128, 0.35);
+  color: #4ade80;
+}
+
+.pricing-card.green .pricing-includes li::before {
+  background-color: rgba(74, 222, 128, 0.15);
+  border-color: rgba(74, 222, 128, 0.35);
+  background-image: url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 4L3 5.5L6.5 2' stroke='%234ade80' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 
 .cta-section {
@@ -604,7 +604,7 @@ main { padding-top: var(--nav-h); }
   margin-bottom: 3rem;
 }
 
-/* ── Contact ───────────────────────────────────── */
+/* Contact */
 .contact-hero {
   padding: 5rem 2rem 4rem;
 }
@@ -684,7 +684,6 @@ main { padding-top: var(--nav-h); }
   cursor: pointer;
 }
 
-/* ── Footer ────────────────────────────────────── */
 footer {
   border-top: 1px solid var(--border);
   padding: 4rem 2rem;
@@ -696,7 +695,6 @@ footer p {
   font-weight: 300;
 }
 
-/* ── Responsive ────────────────────────────────── */
 @media (max-width: 900px) {
   .pricing-grid {
     grid-template-columns: 1fr;
@@ -710,7 +708,7 @@ footer p {
   .hero { padding: 4rem 1.5rem 3rem; }
   .services { padding: 4rem 0; }
   .card-grid { grid-template-columns: 1fr; }
-  .grid { grid-template-columns: 1fr; }
+  .difference .grid { grid-template-columns: 1fr; }
   .container { padding: 0 1.5rem; }
   nav .nav-inner { padding: 0 1.5rem; }
 }
