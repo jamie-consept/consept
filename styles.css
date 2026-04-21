@@ -215,7 +215,7 @@ main { padding-top: var(--nav-h); }
 
 .hero h1 {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: 60px;
   line-height: 1.1;
   letter-spacing: -0.03em;
   font-weight: 700;
@@ -336,96 +336,282 @@ main { padding-top: var(--nav-h); }
   margin-bottom: 3.5rem;
 }
 
-.services {
+/* ===== Sound Familiar — carousel on dark bg ===== */
+.sound-familiar {
   padding: 6rem 0;
-}
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.25rem;
-  margin-top: 3.5rem;
-}
-
-.card {
-  background: var(--accent-fill);
-  border: 1px solid var(--accent-glow);
-  border-radius: 16px;
-  padding: 2.5rem;
-  transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease);
   position: relative;
   overflow: hidden;
 }
 
-.card::before {
+.sound-familiar::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(96,165,250,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.sound-familiar .container { position: relative; z-index: 1; }
+
+.sound-familiar-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: end;
+  margin-bottom: 3.5rem;
+}
+
+.sf-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.sf-intro p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 44ch;
+  margin-left: auto;
+}
+
+.sf-link {
+  color: var(--accent);
+  font-weight: 500;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+
+.sf-link:hover { color: var(--white); }
+
+/* Carousel */
+.sf-carousel {
+  overflow: hidden;
+}
+
+.sf-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 2rem) / 3);
+  gap: 1rem;
+  transition: transform 0.6s var(--ease);
+  will-change: transform;
+}
+
+.sf-card {
+  background: rgba(96,165,250,0.05);
+  border: 1px solid rgba(96,165,250,0.18);
+  border-radius: 16px;
+  padding: 2rem;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease);
+}
+
+.sf-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(96,165,250,0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(96,165,250,0.35), transparent);
 }
 
-.card:hover {
-  background: rgba(96,165,250,0.07);
-  border-color: rgba(96,165,250,0.3);
+.sf-card:hover {
+  background: rgba(96,165,250,0.09);
+  border-color: rgba(96,165,250,0.35);
   transform: translateY(-3px);
 }
 
-.card h3 {
-  font-size: 1.2rem;
+.sf-card-label {
+  font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.sf-card-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
   color: var(--white);
-  margin-bottom: 0.75rem;
 }
 
-.card p {
-  font-size: 0.88rem;
+.sf-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2.5rem;
+}
+
+.sf-counter {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
   color: var(--text-muted);
-  line-height: 1.7;
-  font-weight: 300;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
-/* Difference section - gradient background */
-.difference {
-  padding: 6rem 0;
+.sf-counter [data-sf-current] { color: var(--white); }
+.sf-counter-sep { opacity: 0.6; }
+
+.sf-buttons { display: inline-flex; gap: 0.6rem; }
+
+.sf-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s, color 0.3s, opacity 0.3s;
+  font-family: inherit;
+}
+
+.sf-btn:hover { border-color: var(--accent); color: var(--accent); }
+.sf-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.sf-btn:disabled:hover { border-color: rgba(255,255,255,0.15); color: var(--text); }
+
+/* ===== Why pay by the hour — outcomes comparison ===== */
+.outcomes {
+  padding: 7rem 0;
   background: linear-gradient(180deg, #f8fafc 0%, #e0f2fe 100%);
   position: relative;
 }
 
-.difference .section-title {
-  color: #0a0a0a;
+.outcomes-head {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 4rem;
 }
 
-.difference .grid {
+.outcomes-head .section-title {
+  color: #0a2e1f;
+  margin-bottom: 1.25rem;
+}
+
+.outcomes-sub {
+  font-size: 1rem;
+  color: #475569;
+  line-height: 1.65;
+  font-weight: 300;
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+.outcomes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
 }
 
-.difference-item {
+.outcomes-card {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(15,23,42,0.08);
+  border-radius: 20px;
   padding: 2.5rem;
-  background: rgba(255,255,255,0.6);
-  border-radius: 16px;
-  border: 1px solid rgba(96,165,250,0.2);
+  backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(10px);
 }
 
-.difference-item::before {
+.outcomes-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(96,165,250,0.4), transparent);
 }
 
-.difference-item p {
-  font-size: 1.05rem;
+.outcomes-card--neg::before {
+  background: linear-gradient(90deg, transparent, rgba(148,163,184,0.5), transparent);
+}
+
+.outcomes-card--pos::before {
+  background: linear-gradient(90deg, transparent, rgba(96,165,250,0.6), transparent);
+}
+
+.outcomes-card-head {
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(15,23,42,0.08);
+}
+
+.outcomes-card-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 0.85rem;
+  display: block;
+}
+
+.outcomes-card--pos .outcomes-card-label { color: var(--accent-dim); }
+
+.outcomes-card-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: #0a2e1f;
+}
+
+.outcomes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.outcomes-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.95rem;
   font-weight: 300;
-  line-height: 1.7;
+  line-height: 1.55;
   color: #334155;
+}
+
+.outcomes-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  margin-top: 1px;
+}
+
+.outcomes-card--neg .outcomes-icon {
+  color: #94a3b8;
+}
+
+.outcomes-card--pos .outcomes-icon {
+  color: var(--accent-dim);
+  background: rgba(96,165,250,0.12);
 }
 
 /* Pricing - EXACT NUTMILK STYLING */
@@ -745,14 +931,25 @@ footer p {
     margin-left: auto;
     margin-right: auto;
   }
+  .sound-familiar-head {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+  .sf-intro p { margin-left: 0; }
+  .sf-track { grid-auto-columns: calc((100% - 1rem) / 2); }
+  .outcomes-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
   .hero { padding: 4rem 1.5rem 3rem; }
-  .services { padding: 4rem 0; }
-  .card-grid { grid-template-columns: 1fr; }
-  .difference .grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: clamp(2rem, 9vw, 3rem); }
   .container { padding: 0 1.5rem; }
   nav .nav-inner { padding: 0 1.5rem; }
   .logo img { height: 24px; }
+  .sound-familiar { padding: 4rem 0; }
+  .sf-track { grid-auto-columns: 100%; }
+  .sf-card { padding: 1.75rem; min-height: 180px; }
+  .outcomes { padding: 4.5rem 0; }
+  .outcomes-card { padding: 2rem 1.5rem; }
 }
