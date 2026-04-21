@@ -681,7 +681,6 @@ main { padding-top: var(--nav-h); }
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
   transition: border-color 0.3s, transform 0.3s var(--ease);
 }
 
@@ -719,21 +718,16 @@ main { padding-top: var(--nav-h); }
   flex-shrink: 0;
 }
 
-/* Floating "Most Popular" badge — sits on top of the card */
+/* Floating "Most Popular" badge — straddles the top edge of the card */
 .pricing-badge--top {
   position: absolute;
-  top: 1.5rem;
+  top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   z-index: 2;
-  padding: 0.5rem 1rem;
-  font-size: 14px;
+  padding: 0.4rem 0.9rem;
+  font-size: 12px;
   letter-spacing: 0.1em;
-}
-
-/* Pull the header down so the floating badge has room */
-.pricing-card.green .pricing-card-header {
-  padding-top: 2.25rem;
 }
 
 .pricing-card-header {
