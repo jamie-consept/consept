@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
     <link rel="apple-touch-icon" href="/favicon.png">
-    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
     <nav>
@@ -32,8 +32,18 @@
     </nav>
 
     <main>
-        <section class="hero">
-            <div class="container">
+        <section class="hero hero--video">
+            <video
+                class="hero-video"
+                data-hero-video
+                autoplay muted playsinline preload="auto"
+                poster="/assets/hero-poster.jpg">
+                <source src="/assets/hero-loop-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
+                <source src="/assets/hero-loop.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay" aria-hidden="true"></div>
+            <div class="hero-fade-bottom" aria-hidden="true"></div>
+            <div class="hero-content">
                 <h1>Build smarter digital experiences that grow your business</h1>
                 <a href="/contact" class="btn-pill">
                     <span class="btn-pill-text">Book a growth call</span>
@@ -448,6 +458,79 @@
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           });
         });
+      })();
+
+      // Hero video — custom rAF-based fade in/out for seamless looping
+      (function() {
+        var video = document.querySelector('[data-hero-video]');
+        if (!video) return;
+
+        // Respect user motion preferences
+        var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+          video.style.opacity = '1';
+          return;
+        }
+
+        var fadeFrame = null;
+        var fadingOut = false;
+
+        function animateOpacity(from, to, duration, onComplete) {
+          if (fadeFrame) cancelAnimationFrame(fadeFrame);
+          var start = performance.now();
+          function step(now) {
+            var progress = Math.min((now - start) / duration, 1);
+            var opacity = from + (to - from) * progress;
+            video.style.opacity = String(opacity);
+            if (progress < 1) {
+              fadeFrame = requestAnimationFrame(step);
+            } else if (onComplete) {
+              onComplete();
+            }
+          }
+          fadeFrame = requestAnimationFrame(step);
+        }
+
+        function tryPlay() {
+          var p = video.play();
+          if (p && typeof p.catch === 'function') {
+            p.catch(function() { /* autoplay blocked; silent fallback to poster */ });
+          }
+        }
+
+        video.addEventListener('canplay', function() {
+          // Only fade in the first time canplay fires (and if we're not mid fade-out)
+          if (fadingOut) return;
+          tryPlay();
+          if (parseFloat(video.style.opacity || '0') < 1) {
+            animateOpacity(0, 1, 500);
+          }
+        }, { once: false });
+
+        video.addEventListener('timeupdate', function() {
+          if (!video.duration || fadingOut) return;
+          var remaining = video.duration - video.currentTime;
+          if (remaining <= 0.55 && remaining > 0) {
+            fadingOut = true;
+            animateOpacity(parseFloat(video.style.opacity || '1'), 0, 250);
+          }
+        });
+
+        video.addEventListener('ended', function() {
+          video.style.opacity = '0';
+          setTimeout(function() {
+            try { video.currentTime = 0; } catch (e) {}
+            tryPlay();
+            fadingOut = false;
+            animateOpacity(0, 1, 500);
+          }, 100);
+        });
+
+        // Kick things off if the video is already ready (cached)
+        if (video.readyState >= 3) {
+          tryPlay();
+          animateOpacity(0, 1, 500);
+        }
       })();
     </script>
 </body>
