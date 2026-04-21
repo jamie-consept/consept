@@ -619,11 +619,57 @@ main { padding-top: var(--nav-h); }
   padding: 6rem 0;
 }
 
+.pricing-head {
+  max-width: 780px;
+  margin-bottom: 1rem;
+}
+
+.pricing-head .section-title {
+  margin-bottom: 1.25rem;
+}
+
+.pricing-lead {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 60ch;
+}
+
+.pricing-footnote-primary {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.pricing-footnote-primary a {
+  color: var(--accent);
+  border-bottom: 1px solid rgba(96, 165, 250, 0.35);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.pricing-footnote-primary a:hover {
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.pricing-footnote-small {
+  margin-top: 0.85rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  opacity: 0.65;
+}
+
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
-  margin-top: 4rem;
+  margin-top: 3rem;
   align-items: stretch;
 }
 
