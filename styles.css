@@ -719,6 +719,23 @@ main { padding-top: var(--nav-h); }
   flex-shrink: 0;
 }
 
+/* Floating "Most Popular" badge — sits on top of the card */
+.pricing-badge--top {
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  padding: 0.5rem 1rem;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+}
+
+/* Pull the header down so the floating badge has room */
+.pricing-card.green .pricing-card-header {
+  padding-top: 2.25rem;
+}
+
 .pricing-card-header {
   margin-bottom: 1.5rem;
   padding-bottom: 1.5rem;
@@ -850,8 +867,8 @@ main { padding-top: var(--nav-h); }
 }
 
 .pricing-card.green .pricing-badge {
-  background: rgba(74, 222, 128, 0.15);
-  border-color: rgba(74, 222, 128, 0.35);
+  background: #202622;
+  border-color: rgba(74, 222, 128, 0.5);
   color: #4ade80;
 }
 
