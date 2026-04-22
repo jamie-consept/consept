@@ -319,6 +319,19 @@ main { padding-top: var(--nav-h); }
 
 .btn-pill:hover .btn-pill-text { color: #0a0a0a; }
 
+/* Hero CTA only — slightly larger on desktop for more presence */
+@media (min-width: 769px) {
+  .hero .btn-pill {
+    font-size: 16px;
+    padding: 0.55rem 0.55rem 0.55rem 1.65rem;
+    gap: 1rem;
+  }
+  .hero .btn-pill-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 .btn-pill-icon {
   position: relative;
   z-index: 1;
