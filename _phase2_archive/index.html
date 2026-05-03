@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consept — Building beautiful digital experiences.</title>
+    <meta name="description" content="We help purposeful businesses automate the boring stuff so they can focus on what matters. Clean design, intelligent workflows, built with care.">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+    <link rel="apple-touch-icon" href="/favicon.png">
+    <link rel="stylesheet" href="styles.css?v=12">
+</head>
+<body>
+    <nav>
+        <div class="nav-inner">
+            <a href="/" class="logo" aria-label="Consept home">
+                <img src="/logo.png" alt="Consept" />
+            </a>
+            <span class="nav-cta-wrap">
+                <span class="nav-cta-spinner"></span>
+                <a href="/contact" class="nav-cta">
+                    <span class="nav-cta-text">Get in touch</span>
+                    <span class="nav-cta-icon">
+                        <svg width="10" height="10" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 7H12M12 7L7 2M12 7L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </a>
+            </span>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero hero--video">
+            <video
+                class="hero-video"
+                data-hero-video
+                autoplay muted playsinline preload="auto"
+                poster="/assets/hero-poster.jpg?v=2">
+                <source src="/assets/hero-loop-mobile.mp4?v=2" type="video/mp4" media="(max-width: 768px)">
+                <source src="/assets/hero-loop.mp4?v=2" type="video/mp4">
+            </video>
+            <div class="hero-overlay" aria-hidden="true"></div>
+            <div class="hero-fade-bottom" aria-hidden="true"></div>
+            <div class="hero-content">
+                <h1>Build smarter digital experiences that grow your business</h1>
+                <a href="/contact" class="btn-pill">
+                    <span class="btn-pill-text">Book a growth call</span>
+                    <span class="btn-pill-icon">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 7H12M12 7L7 2M12 7L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <section class="sound-familiar" id="sound-familiar">
+            <div class="container">
+                <div class="sound-familiar-head">
+                    <h2 class="sf-title">Sound familiar?</h2>
+                    <div class="sf-intro">
+                        <p>These are the problems we fix all the time. Each one costs you real money, every month. <a href="#" class="sf-link" data-scroll-to="services">See how we fix them <span aria-hidden="true">&rsaquo;</span></a></p>
+                    </div>
+                </div>
+
+                <div class="sf-carousel" data-sf-carousel>
+                    <div class="sf-track" data-sf-track>
+                        <!-- 10 cards -->
+                        <article class="sf-card">
+                            <span class="sf-card-label">Conversion</span>
+                            <h3 class="sf-card-title">Your website looks fine — but it doesn&rsquo;t convert.</h3>
+                        </article>
+                        <article class="sf-card">
+                            <span class="sf-card-label">Operations</span>
+                            <h3 class="sf-card-title">Your team repeats the same admin tasks every week.</h3>
+                        </article>
+                        <article class="sf-card">
+                            <span class="sf-card-label">Sales</span>
+                            <h3 class="sf-card-title">Leads come in, but follow-up is inconsistent.</h3>
+                        </article>
+                        <article class="sf-card">
+                            <span class="sf-card-label">Brand</span>
+                            <h3 class="sf-card-title">You&rsquo;ve outgrown your current brand and site.</h3>
+                        </article>
+                        <article class="sf-card">
+                            <span class="sf-card-label">Funnel</span>
+                            <h3 class="sf-card-title">Customers drop off somewhere in the funnel.</h3>
+                        </article>
+                        <article class="sf-card">
+                            <span class="sf-card-label">AI strategy</span>
+                            <h3 class="sf-card-title">You know AI matters — but don&rsquo;t know where to start.</h3>
+                        </article>
+                        <article class="sf-card">
+                            <span class="sf-card-label">Capacity</span>
+                            <h3 class="sf-card-title">You need to move quickly, but internal bandwidth is gone.</h3>
+                        </article>
+                        <article class="sf-card">
+                            <span class="sf-card-label">Systems</span>
+                            <h3 class="sf-card-title">Different tools. Different spreadsheets. No joined-up system.</h3>
+                        </article>
+                        <article class="sf-card">
+                            <span class="sf-card-label">Positioning</span>
+                            <h3 class="sf-card-title">Your competitors feel sharper, faster and more modern.</h3>
+                        </article>
+                        <article class="sf-card">
+                            <span class="sf-card-label">Roadmap</span>
+                            <h3 class="sf-card-title">You have ideas — but no clear roadmap to launch.</h3>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="sf-controls">
+                    <div class="sf-counter"><span data-sf-current>01</span><span class="sf-counter-sep">/</span><span data-sf-total>04</span></div>
+                    <div class="sf-buttons">
+                        <button type="button" class="sf-btn" data-sf-prev aria-label="Previous">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 7H2M2 7L7 2M2 7L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button type="button" class="sf-btn" data-sf-next aria-label="Next">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 7H12M12 7L7 2M12 7L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="outcomes">
+            <div class="container">
+                <div class="outcomes-head">
+                    <h2 class="section-title">Why pay by the hour<br>when you can pay by the outcome?</h2>
+                    <p class="outcomes-sub">Freelancers bill for time. We sell results – with our fixed-price design or workflow audits, web development and creative strategy.</p>
+                </div>
+
+                <div class="outcomes-grid">
+                    <div class="outcomes-card outcomes-card--neg">
+                        <div class="outcomes-card-head">
+                            <span class="outcomes-card-label">THE ALTERNATIVES</span>
+                            <h3 class="outcomes-card-title">Hourly billing &middot; Open-ended retainers &middot; Slow-moving delivery</h3>
+                        </div>
+                        <ul class="outcomes-list">
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                                </span>
+                                <span>Budgets that drift as scope expands</span>
+                            </li>
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                                </span>
+                                <span>Timelines that keep moving</span>
+                            </li>
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                                </span>
+                                <span>Too many meetings, too little momentum</span>
+                            </li>
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                                </span>
+                                <span>Handoffs between multiple people</span>
+                            </li>
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                                </span>
+                                <span>Strategy disconnected from execution</span>
+                            </li>
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                                </span>
+                                <span>Outdated processes and fragmented tools</span>
+                            </li>
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                                </span>
+                                <span>Long delays before launch or implementation</span>
+                            </li>
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                                </span>
+                                <span>Hard to measure ROI clearly</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="outcomes-card outcomes-card--pos">
+                        <div class="outcomes-card-head">
+                            <span class="outcomes-card-label">WORKING WITH CONSEPT</span>
+                            <h3 class="outcomes-card-title">Fixed-scope projects &middot; Outcome-led delivery &middot; Growth partnership</h3>
+                        </div>
+                        <ul class="outcomes-list">
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="11" width="14" height="9" rx="1.5" stroke="currentColor" stroke-width="1.75"/><path d="M8 11V7a4 4 0 018 0v4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                                </span>
+                                <span>Clear pricing agreed upfront</span>
+                            </li>
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/><path d="M4 7.5L12 12l8-4.5M12 12v9" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg>
+                                </span>
+                                <span>Defined deliverables and realistic milestones</span>
+                            </li>
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.75"/><path d="M5 20c0-3.5 3-6 7-6s7 2.5 7 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                                </span>
+                                <span>Direct access to senior specialists</span>
+                            </li>
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13 3L5 13h6l-1 8 8-10h-6l1-8z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/></svg>
+                                </span>
+                                <span>Fast ideation, prototyping and execution</span>
+                            </li>
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.75"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.75"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>
+                                </span>
+                                <span>UX, product, strategy and automation under one roof</span>
+                            </li>
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v4M12 17v4M4 12h4M16 12h4M6.3 6.3l2.8 2.8M14.9 14.9l2.8 2.8M6.3 17.7l2.8-2.8M14.9 9.1l2.8-2.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                                </span>
+                                <span>Modern AI-enabled workflows for speed and quality</span>
+                            </li>
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </span>
+                                <span>Launch quickly, improve continuously</span>
+                            </li>
+                            <li>
+                                <span class="outcomes-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20V10M18 20V4M6 20v-6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>
+                                </span>
+                                <span>Focused on results, not hours logged</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing" id="services">
+            <div class="container">
+                <div class="pricing-head">
+                    <h2 class="section-title">Three outcomes.<br class="br-mobile"> Fixed prices.<br>No hourly billing.</h2>
+                    <p class="pricing-lead">Pick the outcome you need. We'll ship it on a fixed price, fixed timeline. No scope creep, no surprise invoices.</p>
+                </div>
+                <div class="pricing-grid">
+                    <!-- CONVERSION AUDIT -->
+                    <div class="pricing-card featured">
+                        <div class="pricing-card-header">
+                            <div class="pricing-service-name">Conversion Audit</div>
+                            <div class="pricing-sub">Find the leaks costing you revenue. A prioritised, evidence-backed report on what's holding your site back &mdash; and exactly what to fix first.</div>
+                        </div>
+                        <div class="pricing-price-block">
+                            <div class="pricing-was">£599</div>
+                            <div class="pricing-now">
+                                <span class="pricing-currency">£</span>
+                                <span class="pricing-amount">399</span>
+                            </div>
+                            <div class="pricing-note">One-off project · Delivered in 5 working days</div>
+                        </div>
+                        <div class="pricing-includes">
+                            <div class="pricing-includes-label">What's included</div>
+                            <ul>
+                                <li>Full walkthrough of your site on desktop &amp; mobile</li>
+                                <li>Friction points mapped across every key page</li>
+                                <li>Conversion leaks identified and quantified</li>
+                                <li>Prioritised fix list, ranked by impact vs. effort</li>
+                                <li>20-page action report (PDF, yours to keep)</li>
+                                <li>60-minute playback call with Q&amp;A</li>
+                            </ul>
+                        </div>
+                        <a href="/contact" class="btn-pill">
+                            <span class="btn-pill-text">Book your audit</span>
+                            <span class="btn-pill-icon">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L7 2M12 7L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                        </a>
+                    </div>
+
+                    <!-- GROWTH-READY WEBSITE -->
+                    <div class="pricing-card featured green">
+                        <span class="pricing-badge pricing-badge--top">Most Popular</span>
+                        <div class="pricing-card-header">
+                            <div class="pricing-service-name">Growth-Ready Website</div>
+                            <div class="pricing-sub">A fast, modern site built to convert, not just to look the part. Launched in 2&ndash;3 weeks and ready for whatever your business throws at it next.</div>
+                        </div>
+                        <div class="pricing-price-block">
+                            <div class="pricing-was">£1,999</div>
+                            <div class="pricing-now">
+                                <span class="pricing-currency">£</span>
+                                <span class="pricing-amount">1,499</span><sup style="font-size:1.2rem; font-weight:500; color:var(--text-muted); vertical-align:super; line-height:0;">*</sup>
+                            </div>
+                            <div class="pricing-note">One-off project · Delivered in 2&ndash;3 weeks</div>
+                        </div>
+                        <div class="pricing-includes">
+                            <div class="pricing-includes-label">What's included</div>
+                            <ul>
+                                <li>Up to 6 pages, custom-designed around your brand</li>
+                                <li>Mobile-first, built for speed and conversion</li>
+                                <li>SEO foundations, meta tags, analytics wired in</li>
+                                <li>Contact forms, CMS, hosting &mdash; all set up for you</li>
+                                <li>2 rounds of revisions, no quibbles</li>
+                                <li>30 days of post-launch support</li>
+                            </ul>
+                        </div>
+                        <a href="/contact" class="btn-pill">
+                            <span class="btn-pill-text">Start your build</span>
+                            <span class="btn-pill-icon">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L7 2M12 7L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                        </a>
+                    </div>
+
+                    <!-- AI & AUTOMATION SPRINT -->
+                    <div class="pricing-card featured">
+                        <div class="pricing-card-header">
+                            <div class="pricing-service-name">AI &amp; Automation Sprint</div>
+                            <div class="pricing-sub">Four weeks from chaos to clarity. We audit your workflows, build the automations that save you the most hours, and train your team to run them.</div>
+                        </div>
+                        <div class="pricing-price-block">
+                            <div class="pricing-was">£3,999</div>
+                            <div class="pricing-now">
+                                <span class="pricing-currency">£</span>
+                                <span class="pricing-amount">2,999</span><sup style="font-size:1.2rem; font-weight:500; color:var(--text-muted); vertical-align:super; line-height:0;">*</sup>
+                            </div>
+                            <div class="pricing-note">One-off project · Delivered over 4 weeks</div>
+                        </div>
+                        <div class="pricing-includes">
+                            <div class="pricing-includes-label">What's included</div>
+                            <ul>
+                                <li>End-to-end audit of your current workflows</li>
+                                <li>A prioritised roadmap of AI &amp; automation wins</li>
+                                <li>Up to 5 automations built, tested, and live</li>
+                                <li>Prompt libraries tailored to your business</li>
+                                <li>Live team training + written playbooks</li>
+                                <li>60 days of post-launch check-ins</li>
+                            </ul>
+                        </div>
+                        <a href="/contact" class="btn-pill">
+                            <span class="btn-pill-text">Plan your sprint</span>
+                            <span class="btn-pill-icon">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7H12M12 7L7 2M12 7L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <p class="pricing-footnote-primary">Not sure which is right for you? <a href="/contact">Book a 20-minute growth call</a> – we'll listen, ask the right questions, and point you to the right starting point.</p>
+                <p class="pricing-footnote-small">* Prices shown are starting prices. Any third-party subscription costs required for your stack are scoped and agreed separately before work begins.</p>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <h2 class="section-title">Ready to get your time back?</h2>
+                <a href="/contact" class="btn-pill">
+                    <span class="btn-pill-text">Let's talk</span>
+                    <span class="btn-pill-icon">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 7H12M12 7L7 2M12 7L7 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Consept. Built with care.</p>
+        </div>
+    </footer>
+
+    <script>
+      (function() {
+        var carousel = document.querySelector('[data-sf-carousel]');
+        if (!carousel) return;
+        var track = carousel.querySelector('[data-sf-track]');
+        var prev = document.querySelector('[data-sf-prev]');
+        var next = document.querySelector('[data-sf-next]');
+        var currentEl = document.querySelector('[data-sf-current]');
+        var totalEl = document.querySelector('[data-sf-total]');
+        if (!track || !prev || !next) return;
+
+        var cards = track.children;
+        var page = 0;
+
+        function perPage() {
+          var w = window.innerWidth;
+          if (w <= 768) return 1;
+          if (w <= 900) return 2;
+          return 3;
+        }
+
+        function totalPages() {
+          return Math.max(1, Math.ceil(cards.length / perPage()));
+        }
+
+        function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+        function update() {
+          var pp = perPage();
+          var totals = totalPages();
+          if (page >= totals) page = totals - 1;
+          if (page < 0) page = 0;
+
+          var viewportWidth = carousel.clientWidth;
+          // account for the gap between pages (grid gap is 16px = 1rem)
+          var gap = 16;
+          var offsetPx = page * (viewportWidth + gap);
+          track.style.transform = 'translateX(-' + offsetPx + 'px)';
+
+          currentEl.textContent = pad(page + 1);
+          totalEl.textContent = pad(totals);
+          prev.disabled = page === 0;
+          next.disabled = page === totals - 1;
+        }
+
+        prev.addEventListener('click', function() { page--; update(); });
+        next.addEventListener('click', function() { page++; update(); });
+
+        var resizeTimer;
+        window.addEventListener('resize', function() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(update, 120);
+        });
+
+        update();
+      })();
+
+      // Smooth scroll to sections without updating the URL
+      (function() {
+        var links = document.querySelectorAll('[data-scroll-to]');
+        if (!links.length) return;
+        links.forEach(function(link) {
+          link.addEventListener('click', function(e) {
+            var targetId = link.getAttribute('data-scroll-to');
+            var target = document.getElementById(targetId);
+            if (!target) return;
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        });
+      })();
+
+      // Hero video — custom rAF-based fade in/out for seamless looping
+      (function() {
+        var video = document.querySelector('[data-hero-video]');
+        if (!video) return;
+
+        // Respect user motion preferences
+        var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+          video.style.opacity = '1';
+          return;
+        }
+
+        var fadeFrame = null;
+        var fadingOut = false;
+
+        function animateOpacity(from, to, duration, onComplete) {
+          if (fadeFrame) cancelAnimationFrame(fadeFrame);
+          var start = performance.now();
+          function step(now) {
+            var progress = Math.min((now - start) / duration, 1);
+            var opacity = from + (to - from) * progress;
+            video.style.opacity = String(opacity);
+            if (progress < 1) {
+              fadeFrame = requestAnimationFrame(step);
+            } else if (onComplete) {
+              onComplete();
+            }
+          }
+          fadeFrame = requestAnimationFrame(step);
+        }
+
+        function tryPlay() {
+          var p = video.play();
+          if (p && typeof p.catch === 'function') {
+            p.catch(function() { /* autoplay blocked; silent fallback to poster */ });
+          }
+        }
+
+        video.addEventListener('canplay', function() {
+          // Only fade in the first time canplay fires (and if we're not mid fade-out)
+          if (fadingOut) return;
+          tryPlay();
+          if (parseFloat(video.style.opacity || '0') < 1) {
+            animateOpacity(0, 1, 500);
+          }
+        }, { once: false });
+
+        video.addEventListener('timeupdate', function() {
+          if (!video.duration || fadingOut) return;
+          var remaining = video.duration - video.currentTime;
+          if (remaining <= 0.55 && remaining > 0) {
+            fadingOut = true;
+            animateOpacity(parseFloat(video.style.opacity || '1'), 0, 250);
+          }
+        });
+
+        video.addEventListener('ended', function() {
+          video.style.opacity = '0';
+          setTimeout(function() {
+            try { video.currentTime = 0; } catch (e) {}
+            tryPlay();
+            fadingOut = false;
+            animateOpacity(0, 1, 500);
+          }, 100);
+        });
+
+        // Kick things off if the video is already ready (cached)
+        if (video.readyState >= 3) {
+          tryPlay();
+          animateOpacity(0, 1, 500);
+        }
+      })();
+    </script>
+</body>
+</html>
