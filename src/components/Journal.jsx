@@ -36,7 +36,7 @@ export default function Journal() {
             <span className="text-[11px] uppercase tracking-[0.22em] text-inksoft">
               03 &mdash; Journal
             </span>
-            <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl mt-4 leading-[0.95] tracking-tighter text-ink">
+            <h2 className="font-display font-light text-5xl md:text-7xl lg:text-8xl mt-4 leading-[0.95] tracking-tighter text-ink">
               Notes from <span className="italic text-moss">the studio</span>
             </h2>
           </div>
@@ -67,7 +67,7 @@ export default function Journal() {
                   {post.date}
                 </div>
                 <div className="md:col-span-7">
-                  <h3 className="font-serif text-2xl md:text-4xl text-ink leading-tight transition-colors duration-300 group-hover:text-moss">
+                  <h3 className="font-display font-light text-2xl md:text-4xl text-ink leading-tight transition-colors duration-300 group-hover:text-moss">
                     {post.title}
                   </h3>
                   <p className="text-sm text-inksoft mt-3 max-w-xl text-pretty">

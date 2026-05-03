@@ -22,9 +22,24 @@ export default function CTAButton({
   onClick,
 }) {
   const sizes = {
+    xs: 'text-sm pl-4 pr-1 py-1',
     sm: 'text-sm px-5 py-2.5',
     md: 'text-base px-6 py-3',
     lg: 'text-base md:text-lg px-7 py-4',
+  };
+
+  const chipSizes = {
+    xs: 'w-7 h-7',
+    sm: 'w-8 h-8',
+    md: 'w-9 h-9',
+    lg: 'w-10 h-10',
+  };
+
+  const iconSizes = {
+    xs: 13,
+    sm: 14,
+    md: 14,
+    lg: 16,
   };
 
   const variants = {
@@ -43,8 +58,8 @@ export default function CTAButton({
       hoverText: 'group-hover:text-paper',
       iconBgIdle: 'bg-moss',
       iconColorIdle: 'text-paper',
-      iconBgHover: 'group-hover:bg-ink',
-      iconColorHover: 'group-hover:text-paper',
+      iconBgHover: 'group-hover:bg-paper',
+      iconColorHover: 'group-hover:text-ink',
     },
     paper: {
       base: 'bg-ink text-paper border border-ink',
@@ -78,10 +93,10 @@ export default function CTAButton({
 
       {/* Arrow chip — rotates on hover, swaps colours alongside the fill */}
       <span
-        className={`relative z-10 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-500 ease-out group-hover:rotate-45 ${v.iconBgIdle} ${v.iconBgHover}`}
+        className={`relative z-10 rounded-full ${chipSizes[size]} flex items-center justify-center transition-all duration-500 ease-out group-hover:rotate-45 ${v.iconBgIdle} ${v.iconBgHover}`}
       >
         <ArrowUpRight
-          size={14}
+          size={iconSizes[size]}
           strokeWidth={1.75}
           className={`transition-colors duration-500 ${v.iconColorIdle} ${v.iconColorHover}`}
         />

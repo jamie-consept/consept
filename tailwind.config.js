@@ -15,8 +15,10 @@ export default {
         line: 'rgba(26, 31, 26, 0.10)', // hairline borders
       },
       fontFamily: {
-        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        // DM Sans does double duty — display uses light weight + tight tracking,
+        // body uses regular. Italic exists for the moss accents.
+        display: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        body: ['"DM Sans"', 'system-ui', 'sans-serif'],
       },
       letterSpacing: {
         'tightest': '-0.04em',

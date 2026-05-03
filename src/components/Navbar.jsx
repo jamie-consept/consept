@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import CTAButton from './CTAButton.jsx';
 
 const NAV_ITEMS = [
   { id: 'projects', label: 'Projects' },
@@ -63,17 +63,13 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* CTA */}
-        <a
-          href="#contact"
-          className="group flex items-center gap-2 bg-ink text-paper rounded-full pl-4 pr-1 py-1 text-sm shrink-0"
-        >
-          <span className="hidden sm:inline">Get in touch</span>
-          <span className="sm:hidden">Contact</span>
-          <span className="bg-moss rounded-full w-7 h-7 flex items-center justify-center transition-transform duration-500 ease-out group-hover:rotate-45">
-            <ArrowUpRight size={14} className="text-paper" strokeWidth={1.75} />
-          </span>
-        </a>
+        {/* CTA — uses the same moss-fill hover as the rest of the site */}
+        <div className="shrink-0">
+          <CTAButton href="#contact" variant="moss" size="xs">
+            <span className="hidden sm:inline">Get in touch</span>
+            <span className="sm:hidden">Contact</span>
+          </CTAButton>
+        </div>
       </div>
     </motion.nav>
   );

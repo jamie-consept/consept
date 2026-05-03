@@ -17,7 +17,7 @@ export default function Footer() {
           <span className="text-[11px] uppercase tracking-[0.22em] text-inksoft">
             05 &mdash; Get in touch
           </span>
-          <h2 className="font-serif text-5xl md:text-7xl lg:text-9xl mt-4 leading-[0.92] tracking-tighter text-ink max-w-5xl text-balance">
+          <h2 className="font-display font-light text-5xl md:text-7xl lg:text-9xl mt-4 leading-[0.92] tracking-tighter text-ink max-w-5xl text-balance">
             Have something <span className="italic text-moss">worth making?</span>
           </h2>
           <p className="text-inksoft mt-8 text-base md:text-lg max-w-xl text-pretty">

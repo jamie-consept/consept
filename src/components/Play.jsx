@@ -39,7 +39,7 @@ export default function Play() {
           <span className="text-[11px] uppercase tracking-[0.22em] text-inksoft">
             02 &mdash; Play
           </span>
-          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl mt-4 leading-[0.95] tracking-tighter text-ink">
+          <h2 className="font-display font-light text-5xl md:text-7xl lg:text-8xl mt-4 leading-[0.95] tracking-tighter text-ink">
             Things we are <span className="italic text-moss">tinkering with</span>
           </h2>
           <p className="text-inksoft mt-7 text-base md:text-lg max-w-xl text-pretty">
@@ -70,7 +70,7 @@ export default function Play() {
                   className="text-inksoft transition-all duration-500 group-hover:rotate-45 group-hover:text-moss"
                 />
               </div>
-              <h3 className="font-serif text-2xl md:text-3xl text-ink mb-2 leading-tight">
+              <h3 className="font-display font-light text-2xl md:text-3xl text-ink mb-2 leading-tight">
                 {item.title}
               </h3>
               <p className="text-sm text-inksoft text-pretty">{item.desc}</p>

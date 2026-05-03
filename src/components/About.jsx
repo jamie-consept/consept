@@ -19,7 +19,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-100px' }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="font-serif text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-ink text-balance"
+              className="font-display font-light text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-ink text-balance"
             >
               Consept is a small studio working at the intersection of{' '}
               <span className="italic text-moss">design</span>,{' '}
@@ -63,7 +63,7 @@ export default function About() {
             <div className="text-[11px] uppercase tracking-[0.22em] text-inksoft mb-5">
               Founder
             </div>
-            <div className="font-serif text-2xl md:text-3xl text-ink leading-tight">
+            <div className="font-display font-light text-2xl md:text-3xl text-ink leading-tight">
               Jamie Lewis
             </div>
             <div className="text-sm text-inksoft mt-1 mb-6">

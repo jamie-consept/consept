@@ -54,7 +54,7 @@ export default function Projects() {
             <span className="text-[11px] uppercase tracking-[0.22em] text-inksoft">
               01 &mdash; Projects
             </span>
-            <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl mt-4 leading-[0.95] tracking-tighter text-ink">
+            <h2 className="font-display font-light text-5xl md:text-7xl lg:text-8xl mt-4 leading-[0.95] tracking-tighter text-ink">
               Selected <span className="italic text-moss">work</span>
             </h2>
           </div>
@@ -98,7 +98,7 @@ export default function Projects() {
 
                 {/* Meta */}
                 <div className="flex items-baseline justify-between gap-4 mb-2">
-                  <h3 className="font-serif text-2xl md:text-3xl text-ink leading-tight">
+                  <h3 className="font-display font-light text-2xl md:text-3xl text-ink leading-tight">
                     {p.title}
                   </h3>
                   <span className="text-xs text-inksoft tabular-nums shrink-0">

@@ -2,8 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useEffect } from 'react';
 import CTAButton from './CTAButton.jsx';
 
-const HEADING_LINE_1 = ['Design', 'for', 'things'];
-const HEADING_LINE_2 = ['that', 'ought'];
+const HEADING_WORDS = ['Design', 'for', 'things', 'that', 'ought'];
 
 export default function Hero() {
   const sectionRef = useRef(null);
@@ -11,16 +10,15 @@ export default function Hero() {
   const fadeFrameRef = useRef(null);
   const fadingOutRef = useRef(false);
 
-  // Parallax/fade as the user scrolls past the hero
+  // Subtle parallax/fade as the user scrolls past the hero
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
   });
-  const y = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -60]);
   const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0]);
 
-  // rAF-based crossfade: fade in on canplay, fade out 0.55s before end,
-  // then loop seamlessly. Same pattern from the Phase 2 cinematic hero.
+  // rAF crossfade loop — same Phase 2 pattern.
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -41,9 +39,7 @@ export default function Hero() {
       fadeFrameRef.current = requestAnimationFrame(step);
     };
 
-    const handleCanPlay = () => {
-      animateOpacity(0, 1, 500);
-    };
+    const handleCanPlay = () => animateOpacity(0, 1, 500);
 
     const handleTimeUpdate = () => {
       if (!videoRef.current) return;
@@ -60,10 +56,13 @@ export default function Hero() {
       setTimeout(() => {
         if (!videoRef.current) return;
         videoRef.current.currentTime = 0;
-        videoRef.current.play().then(() => {
-          fadingOutRef.current = false;
-          animateOpacity(0, 1, 500);
-        }).catch(() => {});
+        videoRef.current
+          .play()
+          .then(() => {
+            fadingOutRef.current = false;
+            animateOpacity(0, 1, 500);
+          })
+          .catch(() => {});
       }, 100);
     };
 
@@ -84,7 +83,7 @@ export default function Hero() {
       ref={sectionRef}
       style={{ y, opacity }}
       id="top"
-      className="relative min-h-[100svh] flex flex-col justify-end px-6 md:px-12 lg:px-16 pb-20 md:pb-28 pt-44 md:pt-52 overflow-hidden"
+      className="relative min-h-[100svh] flex flex-col items-center justify-center text-center px-6 md:px-12 lg:px-16 pt-32 pb-24 overflow-hidden"
     >
       {/* Video background ----------------------------------------------- */}
       <video
@@ -100,41 +99,38 @@ export default function Hero() {
         aria-hidden
       />
 
-      {/* Layered overlays — paper-tinted so the video stays in our palette */}
-      {/* Subtle paper wash for warmth */}
-      <div className="absolute inset-0 bg-paper/15 z-[1] pointer-events-none" aria-hidden />
-      {/* Top fade — keeps nav legible */}
-      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-paper to-transparent z-[2] pointer-events-none" aria-hidden />
-      {/* Bottom fade — paper rises to meet the type so it reads cleanly */}
-      <div className="absolute inset-x-0 bottom-0 h-[55%] bg-gradient-to-t from-paper via-paper/85 to-transparent z-[2] pointer-events-none" aria-hidden />
+      {/* Lighter overlay system — paper now reads as a soft halo, not a curtain */}
+      {/* Top fade only — keeps nav legible without ghosting the sky */}
+      <div
+        className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-paper/80 via-paper/30 to-transparent z-[1] pointer-events-none"
+        aria-hidden
+      />
+      {/* Soft bottom fade — much shorter and lighter than before */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-[28%] bg-gradient-to-t from-paper/70 via-paper/25 to-transparent z-[1] pointer-events-none"
+        aria-hidden
+      />
+      {/* Behind-the-text scrim — just a soft radial-ish glow so text has a backstop */}
+      <div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[60%] z-[2] pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse at center, rgba(250,248,243,0.55) 0%, rgba(250,248,243,0.20) 45%, rgba(250,248,243,0) 75%)',
+        }}
+        aria-hidden
+      />
 
-      {/* Content ------------------------------------------------------- */}
-      <div className="relative z-10">
-        <h1 className="font-serif text-[15vw] sm:text-[13vw] md:text-[10.5vw] lg:text-[9rem] leading-[0.92] tracking-tighter text-ink max-w-6xl text-balance">
-          {HEADING_LINE_1.map((word, i) => (
+      {/* Content -------------------------------------------------------- */}
+      <div className="relative z-10 flex flex-col items-center max-w-4xl mx-auto">
+        <h1 className="font-display font-light text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.02] tracking-[-0.03em] text-ink text-balance">
+          {HEADING_WORDS.map((word, i) => (
             <motion.span
-              key={`l1-${i}`}
-              initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
+              key={`w-${i}`}
+              initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               transition={{
-                duration: 0.9,
-                delay: 0.25 + i * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="inline-block mr-[0.22em]"
-            >
-              {word}
-            </motion.span>
-          ))}
-          <br />
-          {HEADING_LINE_2.map((word, i) => (
-            <motion.span
-              key={`l2-${i}`}
-              initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              transition={{
-                duration: 0.9,
-                delay: 0.5 + i * 0.08,
+                duration: 0.85,
+                delay: 0.3 + i * 0.07,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="inline-block mr-[0.22em]"
@@ -143,10 +139,10 @@ export default function Hero() {
             </motion.span>
           ))}
           <motion.span
-            initial={{ opacity: 0, y: 50, filter: 'blur(8px)' }}
+            initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
             animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            transition={{ duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-block italic text-moss"
+            transition={{ duration: 0.85, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-block italic text-moss font-normal"
           >
             to last.
           </motion.span>
@@ -154,10 +150,10 @@ export default function Hero() {
 
         {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.95, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-12 md:mt-14"
+          className="mt-10 md:mt-12"
         >
           <CTAButton href="#projects" variant="ink" size="md">
             See selected work
