@@ -1,6 +1,5 @@
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
-import DisciplineMarquee from './components/DisciplineMarquee.jsx';
 import Projects from './components/Projects.jsx';
 import Play from './components/Play.jsx';
 import Journal from './components/Journal.jsx';
@@ -31,7 +30,6 @@ export default function App() {
 
       <main>
         <Hero />
-        <DisciplineMarquee />
         <Projects />
         <Play />
         <Journal />

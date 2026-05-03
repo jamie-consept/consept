@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import CTAButton from './CTAButton.jsx';
 
 export default function Footer() {
   return (
@@ -25,19 +25,13 @@ export default function Footer() {
             on something good, we would love to hear about it.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a
-              href="mailto:hello@consept.io"
-              className="group inline-flex items-center gap-3 bg-ink text-paper rounded-full pl-6 pr-1.5 py-1.5 text-base"
-            >
+          <div className="mt-10 flex flex-wrap items-center gap-5">
+            <CTAButton href="mailto:hello@consept.io" variant="ink" size="lg">
               hello@consept.io
-              <span className="bg-moss rounded-full w-10 h-10 flex items-center justify-center transition-transform duration-500 group-hover:rotate-45">
-                <ArrowUpRight size={16} className="text-paper" strokeWidth={1.75} />
-              </span>
-            </a>
+            </CTAButton>
             <a
               href="#"
-              className="text-sm text-inksoft link-underline ml-2"
+              className="text-sm text-inksoft link-underline ml-1"
             >
               Or book a call
             </a>

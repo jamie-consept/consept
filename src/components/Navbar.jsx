@@ -36,9 +36,9 @@ export default function Navbar() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-      className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 lg:px-16 pt-5 sm:pt-6"
+      className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 lg:px-16 pt-7 sm:pt-9"
     >
-      <div className="frost rounded-full pl-5 pr-1.5 py-1.5 max-w-5xl mx-auto flex items-center justify-between gap-4">
+      <div className="frost rounded-full pl-5 pr-2 py-2.5 max-w-5xl mx-auto flex items-center justify-between gap-4">
         {/* Logo lockup */}
         <a href="#top" className="flex items-center shrink-0" aria-label="Consept home">
           <img
