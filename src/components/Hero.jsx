@@ -155,7 +155,7 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.95, ease: [0.22, 1, 0.36, 1] }}
           className="mt-10 md:mt-12"
         >
-          <CTAButton href="#projects" variant="ink" size="md">
+          <CTAButton href="#projects" variant="paper" size="md">
             See selected work
           </CTAButton>
         </motion.div>
