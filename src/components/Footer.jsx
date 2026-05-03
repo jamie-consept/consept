@@ -43,8 +43,7 @@ export default function Footer() {
           <div className="flex items-center gap-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-moss" aria-hidden />
             <span>
-              Consept &copy; {new Date().getFullYear()} &middot; Made slowly in
-              the North East
+              Consept &copy; {new Date().getFullYear()} &middot; Made intentionally from Somerset
             </span>
           </div>
           <div className="flex items-center gap-6">

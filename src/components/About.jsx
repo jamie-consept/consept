@@ -81,7 +81,7 @@ export default function About() {
                 <div className="text-[11px] uppercase tracking-wider text-inksoft mb-1">
                   Based
                 </div>
-                <div className="text-ink">North East England</div>
+                <div className="text-ink">Somerset, UK</div>
               </div>
               <div>
                 <div className="text-[11px] uppercase tracking-wider text-inksoft mb-1">
