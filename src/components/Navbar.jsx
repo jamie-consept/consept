@@ -40,11 +40,12 @@ export default function Navbar() {
     >
       <div className="frost rounded-full pl-5 pr-1.5 py-1.5 max-w-5xl mx-auto flex items-center justify-between gap-4">
         {/* Logo lockup */}
-        <a href="#top" className="flex items-center gap-2.5 shrink-0" aria-label="Consept home">
-          <span className="w-2 h-2 rounded-full bg-moss" aria-hidden />
-          <span className="font-serif italic text-xl text-ink leading-none translate-y-[1px]">
-            consept
-          </span>
+        <a href="#top" className="flex items-center shrink-0" aria-label="Consept home">
+          <img
+            src="/logo.png"
+            alt="Consept"
+            className="h-5 md:h-[22px] w-auto"
+          />
         </a>
 
         {/* Center nav — desktop only */}
