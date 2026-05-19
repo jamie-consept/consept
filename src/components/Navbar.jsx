@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import CTAButton from './CTAButton.jsx';
+import ThemeToggle from './ThemeToggle.jsx';
 
 const NAV_ITEMS = [
   { id: 'projects', label: 'Projects' },
@@ -64,7 +65,8 @@ export default function Navbar() {
         </div>
 
         {/* CTA — uses the same moss-fill hover as the rest of the site */}
-        <div className="shrink-0">
+        <div className="shrink-0 flex items-center gap-3">
+          <ThemeToggle />
           <CTAButton href="#contact" variant="moss" size="xs">
             <span className="hidden sm:inline">Get in touch</span>
             <span className="sm:hidden">Contact</span>
