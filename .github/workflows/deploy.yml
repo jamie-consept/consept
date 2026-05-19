@@ -42,6 +42,7 @@ jobs:
           cp favicon-192.png dist/favicon-192.png || true
           cp favicon.png dist/favicon.png || true
           cp logo.png dist/logo.png || true
+          cp logo-dark.png dist/logo-dark.png || true
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

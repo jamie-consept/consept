@@ -40,12 +40,19 @@ export default function Navbar() {
       className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-12 lg:px-16 pt-7 sm:pt-9"
     >
       <div className="frost rounded-full pl-5 pr-2 py-2.5 max-w-5xl mx-auto flex items-center justify-between gap-4">
-        {/* Logo lockup */}
+        {/* Logo lockup — two variants, swapped via dark: utility so the
+            change is instant (no JS state, no flash at hydration). The
+            unused one is display:none and doesn't take layout space. */}
         <a href="#top" className="flex items-center shrink-0" aria-label="Consept home">
           <img
             src="/logo.png"
             alt="Consept"
-            className="h-5 md:h-[22px] w-auto"
+            className="h-5 md:h-[22px] w-auto block dark:hidden"
+          />
+          <img
+            src="/logo-dark.png"
+            alt="Consept"
+            className="h-5 md:h-[22px] w-auto hidden dark:block"
           />
         </a>
 
