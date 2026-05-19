@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 
 // Placeholder project data — Jamie to swap for real entries
@@ -41,6 +42,129 @@ const PROJECTS = [
   },
 ];
 
+// Distance each card "owns" in the scroll flow — taller spacer = longer pin
+const DESKTOP_CARD_SPACER = 'md:h-[120vh]';
+
+/**
+ * StackingCard
+ * Mobile: renders the original visual-on-top, meta-below layout.
+ * Desktop: card is sticky at top:6rem inside a 120vh spacer so the next card
+ * scrolls up and over it. Subtle scale/y shift on the pinned card as the next
+ * one approaches gives the "deck of cards" feel.
+ */
+function StackingCard({ project, index, total }) {
+  const wrapperRef = useRef(null);
+
+  // Track scroll progress through this card's spacer. As the next card scrolls
+  // in (the back-half of progress), shrink + lift this one slightly.
+  const { scrollYProgress } = useScroll({
+    target: wrapperRef,
+    offset: ['start start', 'end start'],
+  });
+
+  // Only the back portion drives the shift — keeps the card fully natural while it's the "active" one.
+  const scale = useTransform(scrollYProgress, [0, 0.55, 1], [1, 1, 0.96]);
+  const y = useTransform(scrollYProgress, [0, 0.55, 1], [0, 0, -16]);
+  const isLast = index === total - 1;
+
+  return (
+    <div
+      ref={wrapperRef}
+      className={`relative ${isLast ? '' : DESKTOP_CARD_SPACER}`}
+    >
+      <motion.article
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{
+          duration: 0.9,
+          delay: 0.05,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        // On desktop: sticky pin. On mobile: normal flow.
+        className="md:sticky md:top-24 group"
+        style={{ scale, y }}
+      >
+        {/* MOBILE LAYOUT — original visual-on-top, meta-below. Hidden on md+. */}
+        <a href="#" className="block md:hidden">
+          <div
+            className="relative aspect-[4/5] rounded-2xl overflow-hidden grain mb-6"
+            style={{ background: project.gradient }}
+          >
+            <div className="absolute top-4 left-4 frost rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-ink z-10">
+              {project.tag}
+            </div>
+            <div className="absolute bottom-4 right-4 w-11 h-11 frost rounded-full flex items-center justify-center transition-transform duration-500 group-hover:rotate-45 z-10">
+              <ArrowUpRight size={16} className="text-ink" strokeWidth={1.75} />
+            </div>
+          </div>
+
+          <div className="flex items-baseline justify-between gap-4 mb-2">
+            <h3 className="font-display font-light text-2xl text-ink leading-tight">
+              {project.title}
+            </h3>
+            <span className="text-xs text-inksoft tabular-nums shrink-0">
+              {project.year}
+            </span>
+          </div>
+          <p className="text-sm text-inksoft mb-3">{project.type}</p>
+          <p className="text-sm text-inksoft leading-relaxed max-w-md text-pretty">
+            {project.desc}
+          </p>
+        </a>
+
+        {/* DESKTOP LAYOUT — visual left, meta right, 5:3 aspect. Hidden below md. */}
+        <a
+          href="#"
+          className="hidden md:block bg-paper rounded-2xl overflow-hidden border border-line shadow-[0_24px_64px_-32px_rgba(26,31,26,0.18)]"
+        >
+          <div className="grid grid-cols-12 aspect-[5/3]">
+            {/* Visual — left ~58% (7/12) */}
+            <div
+              className="relative col-span-7 grain overflow-hidden"
+              style={{ background: project.gradient }}
+            >
+              <div className="absolute top-5 left-5 frost rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-ink z-10">
+                {project.tag}
+              </div>
+            </div>
+
+            {/* Meta — right ~42% (5/12) */}
+            <div className="relative col-span-5 p-10 lg:p-12 flex flex-col justify-between">
+              {/* Top row: index number, year */}
+              <div className="flex items-start justify-between">
+                <span className="text-[11px] uppercase tracking-[0.22em] text-inksoft tabular-nums">
+                  {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+                </span>
+                <span className="text-xs text-inksoft tabular-nums">
+                  {project.year}
+                </span>
+              </div>
+
+              {/* Bottom block: title, type, description, arrow chip */}
+              <div>
+                <h3 className="font-display font-light text-4xl lg:text-5xl text-ink leading-[1.02] tracking-tight mb-3">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-inksoft mb-4">{project.type}</p>
+                <p className="text-sm text-inksoft leading-relaxed max-w-sm text-pretty">
+                  {project.desc}
+                </p>
+
+                <div className="flex justify-end -mt-6">
+                  <div className="w-12 h-12 frost rounded-full flex items-center justify-center transition-transform duration-500 group-hover:rotate-45">
+                    <ArrowUpRight size={18} className="text-ink" strokeWidth={1.75} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </motion.article>
+    </div>
+  );
+}
+
 export default function Projects() {
   return (
     <section
@@ -67,50 +191,18 @@ export default function Projects() {
           </a>
         </div>
 
-        {/* Asymmetric grid — even cards offset down for editorial rhythm */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-10">
+        {/* Cards.
+            Mobile: simple vertical stack with gap.
+            Desktop: each card lives in its own 120vh spacer so it pins, and the
+            following card scrolls up and over it. */}
+        <div className="space-y-10 md:space-y-0">
           {PROJECTS.map((p, i) => (
-            <motion.article
+            <StackingCard
               key={p.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{
-                duration: 0.9,
-                delay: i * 0.1,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className={`group ${i % 2 === 1 ? 'md:translate-y-20' : ''}`}
-            >
-              <a href="#" className="block">
-                {/* Visual */}
-                <div
-                  className="relative aspect-[4/5] rounded-2xl overflow-hidden grain mb-6"
-                  style={{ background: p.gradient }}
-                >
-                  <div className="absolute top-4 left-4 frost rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-ink z-10">
-                    {p.tag}
-                  </div>
-                  <div className="absolute bottom-4 right-4 w-11 h-11 frost rounded-full flex items-center justify-center transition-transform duration-500 group-hover:rotate-45 z-10">
-                    <ArrowUpRight size={16} className="text-ink" strokeWidth={1.75} />
-                  </div>
-                </div>
-
-                {/* Meta */}
-                <div className="flex items-baseline justify-between gap-4 mb-2">
-                  <h3 className="font-display font-light text-2xl md:text-3xl text-ink leading-tight">
-                    {p.title}
-                  </h3>
-                  <span className="text-xs text-inksoft tabular-nums shrink-0">
-                    {p.year}
-                  </span>
-                </div>
-                <p className="text-sm text-inksoft mb-3">{p.type}</p>
-                <p className="text-sm text-inksoft leading-relaxed max-w-md text-pretty">
-                  {p.desc}
-                </p>
-              </a>
-            </motion.article>
+              project={p}
+              index={i}
+              total={PROJECTS.length}
+            />
           ))}
         </div>
       </div>
