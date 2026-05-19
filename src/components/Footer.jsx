@@ -26,8 +26,8 @@ export default function Footer() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-5">
-            <CTAButton href="mailto:Jamie@consept.io" variant="ink" size="lg">
-              Jamie@consept.io
+            <CTAButton href="mailto:jamie@consept.io" variant="ink" size="lg">
+              jamie@consept.io
             </CTAButton>
           </div>
         </motion.div>
