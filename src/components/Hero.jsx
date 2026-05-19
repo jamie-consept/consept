@@ -115,7 +115,7 @@ export default function Hero() {
         className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[60%] z-[2] pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse at center, rgba(250,248,243,0.55) 0%, rgba(250,248,243,0.20) 45%, rgba(250,248,243,0) 75%)',
+            'radial-gradient(ellipse at center, rgb(var(--c-paper) / 0.55) 0%, rgb(var(--c-paper) / 0.20) 45%, rgb(var(--c-paper) / 0) 75%)',
         }}
         aria-hidden
       />

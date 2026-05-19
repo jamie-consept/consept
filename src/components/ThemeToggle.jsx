@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sun, Moon } from 'lucide-react';
+import { useTheme } from '../hooks/useTheme.js';
 
 /**
  * ThemeToggle
@@ -11,13 +11,12 @@ import { Sun, Moon } from 'lucide-react';
  *   - Thumb:  24 x 24 (w-6 h-6), sits at left-1 by default; animates to
  *             x:28 when dark, landing at right-1 with equal breathing room
  *   - Icons:  flex-1 halves, centred via justify-center inside each half
- *             (no `ml-auto` — that's what made the previous version look
- *             asymmetric)
  *
- * Still light-locked: state is internal. Dark palette + wiring land next.
+ * Wired to useTheme — clicking toggles the `dark` class on <html>,
+ * persists in localStorage, defaults to dark on first visit.
  */
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
+  const { isDark, toggle } = useTheme();
 
   return (
     <button
@@ -25,7 +24,7 @@ export default function ThemeToggle() {
       role="switch"
       aria-checked={isDark}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      onClick={() => setIsDark((v) => !v)}
+      onClick={toggle}
       className="relative inline-flex items-center w-16 h-8 rounded-full border border-line bg-paperdeep/70 hover:bg-paperdeep transition-colors p-1 shrink-0"
     >
       {/* Sliding thumb. left-1/top-1 gives a 4px inset on three sides at

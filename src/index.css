@@ -2,7 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =========================================================================
+   THEME TOKENS
+   ------------------------------------------------------------------------
+   Colour tokens are stored as space-separated R G B channels so Tailwind's
+   opacity modifiers (e.g. `bg-paper/80`, `from-moss/10`) can compose them
+   with alpha via `rgb(var(--c-paper) / <alpha-value>)` in tailwind.config.
+
+   `.dark` (applied to <html> by the toggle / pre-paint script) overrides
+   the same variables for dark mode. Components keep their existing Tailwind
+   classes — no `dark:` colour variants needed anywhere else.
+   ========================================================================= */
 @layer base {
+  :root {
+    --c-paper: 250 248 243;       /* #FAF8F3 */
+    --c-paperdeep: 244 240 232;   /* #F4F0E8 */
+    --c-ink: 26 31 26;            /* #1A1F1A */
+    --c-inksoft: 92 97 92;        /* #5C615C */
+    --c-moss: 74 107 63;          /* #4A6B3F */
+    --c-mossdeep: 58 85 48;       /* #3A5530 */
+    --c-clay: 212 163 115;        /* #D4A373 */
+    --c-line: 26 31 26;           /* same RGB as ink, alpha applied via /10 */
+    --c-line-alpha: 0.10;
+
+    /* Glass + grain tuning — separate from colour tokens because they have
+       their own per-theme balance, not just an alpha shift. */
+    --frost-bg: 250 248 243;
+    --frost-bg-alpha: 0.65;
+    --frost-bg-strong-alpha: 0.82;
+    --frost-border: 26 31 26;
+    --frost-border-alpha: 0.06;
+    --frost-border-strong-alpha: 0.08;
+    --frost-highlight: 255 255 255;
+    --frost-highlight-alpha: 0.8;
+    --frost-highlight-strong-alpha: 0.9;
+    --frost-shadow: 0 8px 32px -12px rgb(26 31 26 / 0.08);
+    --frost-shadow-strong: 0 16px 48px -16px rgb(26 31 26 / 0.12);
+    --grain-opacity: 0.06;
+    --grain-blend: multiply;
+  }
+
+  .dark {
+    --c-paper: 19 20 15;          /* #13140F warm near-black */
+    --c-paperdeep: 27 29 23;      /* #1B1D17 */
+    --c-ink: 240 237 229;         /* #F0EDE5 warm cream */
+    --c-inksoft: 154 152 144;     /* #9A9890 */
+    --c-moss: 125 164 110;        /* #7DA46E brighter for dark ground */
+    --c-mossdeep: 148 181 133;    /* #94B585 */
+    --c-clay: 212 163 115;
+    --c-line: 240 237 229;
+    --c-line-alpha: 0.10;
+
+    --frost-bg: 19 20 15;
+    --frost-bg-alpha: 0.55;
+    --frost-bg-strong-alpha: 0.75;
+    --frost-border: 240 237 229;
+    --frost-border-alpha: 0.08;
+    --frost-border-strong-alpha: 0.12;
+    --frost-highlight: 240 237 229;
+    --frost-highlight-alpha: 0.06;
+    --frost-highlight-strong-alpha: 0.10;
+    --frost-shadow: 0 8px 32px -12px rgb(0 0 0 / 0.5);
+    --frost-shadow-strong: 0 16px 48px -16px rgb(0 0 0 / 0.6);
+    --grain-opacity: 0.04;
+    --grain-blend: overlay;
+  }
+
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
@@ -11,41 +76,39 @@
   body {
     @apply bg-paper text-ink font-body;
     font-feature-settings: 'ss01', 'cv11';
+    transition: background-color 0.5s ease, color 0.5s ease;
   }
-  /* Selection — moss on paper */
+
   ::selection {
-    background: #4A6B3F;
-    color: #FAF8F3;
+    background: rgb(var(--c-moss));
+    color: rgb(var(--c-paper));
   }
 }
 
 @layer components {
-  /* Light-mode adaptation of the studio's glass treatment.
-     Subtle frosted off-white instead of translucent white-on-dark. */
+  /* Frosted panel — adapts to theme via --frost-* tokens. */
   .frost {
-    background: rgba(250, 248, 243, 0.65);
+    background: rgb(var(--frost-bg) / var(--frost-bg-alpha));
     backdrop-filter: blur(20px) saturate(140%);
     -webkit-backdrop-filter: blur(20px) saturate(140%);
-    border: 1px solid rgba(26, 31, 26, 0.06);
+    border: 1px solid rgb(var(--frost-border) / var(--frost-border-alpha));
     box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.8) inset,
-      0 8px 32px -12px rgba(26, 31, 26, 0.08);
+      0 1px 0 rgb(var(--frost-highlight) / var(--frost-highlight-alpha)) inset,
+      var(--frost-shadow);
     position: relative;
   }
 
-  /* Stronger frosted card for emphasis */
   .frost-strong {
-    background: rgba(250, 248, 243, 0.82);
+    background: rgb(var(--frost-bg) / var(--frost-bg-strong-alpha));
     backdrop-filter: blur(30px) saturate(160%);
     -webkit-backdrop-filter: blur(30px) saturate(160%);
-    border: 1px solid rgba(26, 31, 26, 0.08);
+    border: 1px solid rgb(var(--frost-border) / var(--frost-border-strong-alpha));
     box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.9) inset,
-      0 16px 48px -16px rgba(26, 31, 26, 0.12);
+      0 1px 0 rgb(var(--frost-highlight) / var(--frost-highlight-strong-alpha)) inset,
+      var(--frost-shadow-strong);
     position: relative;
   }
 
-  /* Paper grain — subtle, layered via ::before so it can't catch clicks */
   .grain {
     position: relative;
     isolation: isolate;
@@ -55,8 +118,8 @@
     position: absolute;
     inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-    opacity: 0.06;
-    mix-blend-mode: multiply;
+    opacity: var(--grain-opacity);
+    mix-blend-mode: var(--grain-blend);
     pointer-events: none;
     z-index: 1;
   }
@@ -65,7 +128,6 @@
     z-index: 2;
   }
 
-  /* Animated underline for inline nav and text links */
   .link-underline {
     position: relative;
     display: inline-block;
@@ -85,7 +147,6 @@
     width: 100%;
   }
 
-  /* Continuous marquee */
   .marquee-track {
     display: flex;
     width: max-content;
@@ -99,7 +160,6 @@
     .marquee-track { animation: none; }
   }
 
-  /* Soft ambient blobs for warmth — pure decoration */
   .ambient-blob {
     position: absolute;
     border-radius: 50%;

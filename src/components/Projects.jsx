@@ -103,7 +103,7 @@ function StackingCard({ project, index, total }) {
       {/* DESKTOP LAYOUT — visual left, meta right, 5:3 aspect. */}
       <a
         href="#"
-        className="hidden md:block bg-paper rounded-2xl overflow-hidden border border-line shadow-[0_24px_64px_-32px_rgba(26,31,26,0.22)]"
+        className="hidden md:block bg-paper rounded-2xl overflow-hidden border border-line shadow-[0_24px_64px_-32px_rgb(var(--c-ink)/0.22)]"
       >
         <div className="grid grid-cols-12 aspect-[5/3]">
           {/* Visual — left ~58% (7/12) */}

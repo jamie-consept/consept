@@ -22,7 +22,7 @@
       rel="stylesheet"
     />
 
-    <meta name="theme-color" content="#FAF8F3" />
+    <meta name="theme-color" content="#13140F" />
     <meta property="og:title" content="Consept — Design for things that ought to last" />
     <meta
       property="og:description"
@@ -30,6 +30,24 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://consept.io" />
+
+    <!-- Pre-paint theme script. Runs before <body> renders so the correct
+         palette is applied before first paint, preventing a flash of the
+         wrong theme. Default is dark; user's localStorage choice overrides. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('consept-theme');
+          var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {
+          // localStorage unavailable — fall back to default (dark)
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
