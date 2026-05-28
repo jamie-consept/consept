@@ -1,56 +1,473 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>consept.io — coming soon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <title>Consept — Design for things that ought to last</title>
-    <meta
-      name="description"
-      content="Consept is a small design studio working with purpose-led businesses, charities and projects building toward a more sustainable, conscious future. Brand, product and experience — physical and digital."
-    />
+  :root {
+    --white:   #FFFFFF;
+    --bg:      #F4F8FF;
+    --blue-50: #EBF2FF;
+    --blue-200:#BFCFE8;
+    --blue-400:#5B8EC4;
+    --blue-600:#2563EB;
+    --blue-800:#1E3A5F;
+    --ink:     #12223A;
+    --stroke:  2px;
+  }
 
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+  html, body {
+    height: 100%;
+    background: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400;1,9..40,500&display=swap"
-      rel="stylesheet"
-    />
+  .page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 24px 48px;
+    position: relative;
+    overflow: hidden;
+  }
 
-    <meta name="theme-color" content="#13140F" />
-    <meta property="og:title" content="Consept — Design for things that ought to last" />
-    <meta
-      property="og:description"
-      content="A small design studio working with purpose-led businesses, charities and projects building toward a more sustainable, conscious future."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://consept.io" />
+  /* ── Subtle grid bg ── */
+  .page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--blue-50) 1px, transparent 1px),
+      linear-gradient(90deg, var(--blue-50) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.6;
+    pointer-events: none;
+  }
 
-    <!-- Pre-paint theme script. Runs before <body> renders so the correct
-         palette is applied before first paint, preventing a flash of the
-         wrong theme. Default is dark; user's localStorage choice overrides. -->
-    <script>
-      (function () {
-        try {
-          var stored = localStorage.getItem('consept-theme');
-          var theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
-          if (theme === 'dark') {
-            document.documentElement.classList.add('dark');
-          }
-        } catch (e) {
-          // localStorage unavailable — fall back to default (dark)
-          document.documentElement.classList.add('dark');
-        }
-      })();
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+  /* ── Wordmark ── */
+  .wordmark {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    color: var(--blue-800);
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.1s forwards;
+  }
+  .wordmark em { color: var(--blue-600); font-style: normal; }
+
+  /* ── SVG Scene ── */
+  .scene-wrap {
+    width: 100%;
+    max-width: 780px;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+  }
+  .scene-wrap svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  /* ── Line-art style ── */
+  .village {
+    fill: none;
+    stroke: var(--blue-600);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .village-light {
+    fill: none;
+    stroke: var(--blue-200);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .ground {
+    stroke: var(--blue-400);
+    stroke-width: 2;
+    fill: none;
+  }
+
+  /* ── Draw-on animation for paths ── */
+  .draw {
+    stroke-dasharray: var(--len, 2000);
+    stroke-dashoffset: var(--len, 2000);
+    animation: drawPath var(--dur, 2s) ease var(--delay, 0s) forwards;
+  }
+  @keyframes drawPath {
+    to { stroke-dashoffset: 0; }
+  }
+
+  /* ── Looping construction animations ── */
+
+  /* Crane arm swings */
+  .crane-hook {
+    transform-origin: 260px 70px;
+    animation: craneSwing 4s ease-in-out infinite;
+  }
+  @keyframes craneSwing {
+    0%, 100% { transform: rotate(0deg); }
+    40%       { transform: rotate(12deg); }
+    60%       { transform: rotate(12deg); }
+  }
+
+  /* Builder walks */
+  .builder {
+    animation: walk 3.5s ease-in-out infinite;
+  }
+  @keyframes walk {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(14px); }
+    100% { transform: translateX(0); }
+  }
+
+  /* Cement mixer drum rotates */
+  .drum {
+    transform-origin: 670px 148px;
+    animation: spin 2s linear infinite;
+  }
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Scaffolding plank bobs */
+  .worker-plank {
+    animation: bob 2.8s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-5px); }
+  }
+
+  /* Clouds drift */
+  .cloud {
+    animation: drift linear infinite;
+  }
+  .cloud-1 { animation-duration: 28s; animation-delay: 0s; }
+  .cloud-2 { animation-duration: 22s; animation-delay: -10s; }
+  @keyframes drift {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(18px); }
+    100% { transform: translateX(0); }
+  }
+
+  /* Smoke puffs */
+  .smoke {
+    animation: puff 2.2s ease-in-out infinite;
+    transform-origin: center bottom;
+  }
+  .smoke-2 { animation-delay: -1.1s; }
+  @keyframes puff {
+    0%   { transform: translateY(0) scale(1); opacity: 0.6; }
+    100% { transform: translateY(-14px) scale(1.6); opacity: 0; }
+  }
+
+  /* Blink light on crane */
+  .blink {
+    animation: blink 1.4s step-end infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* ── Text block ── */
+  .text-block {
+    text-align: center;
+    margin-top: 40px;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 1.2s forwards;
+  }
+  .text-block h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    color: var(--ink);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+  .text-block p {
+    font-size: clamp(0.82rem, 2.2vw, 0.95rem);
+    color: var(--blue-400);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Badge ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--blue-50);
+    border: 1px solid var(--blue-200);
+    color: var(--blue-600);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.0s forwards;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--blue-600);
+    border-radius: 50%;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.6); opacity: 0.4; }
+  }
+
+  /* ── Footer ── */
+  .footer {
+    position: absolute;
+    bottom: 20px;
+    font-size: 0.68rem;
+    color: var(--blue-200);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Mobile tweaks ── */
+  @media (max-width: 480px) {
+    .page { padding: 24px 16px 40px; }
+    .wordmark { margin-bottom: 32px; }
+    .text-block { margin-top: 28px; }
+    .village { stroke-width: 1.8; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="badge"><span class="badge-dot"></span>Under construction</div>
+  <div class="wordmark">consept<em>.</em>io</div>
+
+  <!-- ══════════════════════════════════════════
+       SVG VILLAGE SCENE  (viewBox 0 0 800 220)
+       Sections: clouds · existing house · half-built structure · crane · worker · mixer · ground
+  ══════════════════════════════════════════ -->
+  <div class="scene-wrap">
+  <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" aria-label="Village under construction animation">
+
+    <!-- ── Clouds ── -->
+    <g class="village-light cloud cloud-1">
+      <path d="M60 38 Q65 28 75 30 Q78 20 90 22 Q100 14 110 22 Q122 18 124 28 Q132 28 130 38 Z"/>
+    </g>
+    <g class="village-light cloud cloud-2">
+      <path d="M580 25 Q585 17 593 18 Q596 11 606 13 Q614 8 621 13 Q630 11 631 19 Q637 20 635 28 Z"/>
+    </g>
+
+    <!-- ── Existing house (left) ── -->
+    <g class="village draw" style="--len:1400;--dur:2s;--delay:0.4s">
+      <!-- House body -->
+      <rect x="60" y="110" width="130" height="80"/>
+      <!-- Roof -->
+      <polyline points="50,110 125,60 200,110"/>
+      <!-- Door -->
+      <path d="M108 190 L108 148 Q125 138 142 148 L142 190"/>
+      <!-- Windows -->
+      <rect x="70" y="120" width="28" height="24" rx="2"/>
+      <line x1="84" y1="120" x2="84" y2="144"/>
+      <line x1="70" y1="132" x2="98" y2="132"/>
+      <rect x="152" y="120" width="28" height="24" rx="2"/>
+      <line x1="166" y1="120" x2="166" y2="144"/>
+      <line x1="152" y1="132" x2="180" y2="132"/>
+      <!-- Chimney -->
+      <rect x="158" y="72" width="16" height="28"/>
+    </g>
+    <!-- Chimney smoke -->
+    <circle class="village-light smoke" cx="166" cy="66" r="5"/>
+    <circle class="village-light smoke smoke-2" cx="170" cy="62" r="4"/>
+    <!-- Trees left -->
+    <g class="village draw" style="--len:300;--dur:1s;--delay:0.6s">
+      <line x1="30" y1="190" x2="30" y2="148"/>
+      <path d="M30 148 Q15 135 10 118 Q24 122 30 110 Q36 122 50 118 Q45 135 30 148"/>
+      <line x1="48" y1="190" x2="48" y2="158"/>
+      <path d="M48 158 Q37 147 33 133 Q44 137 48 127 Q52 137 63 133 Q59 147 48 158"/>
+    </g>
+
+    <!-- ── Half-built structure (centre) ── -->
+    <g class="village draw" style="--len:1600;--dur:2.2s;--delay:0.7s">
+      <!-- Foundation / walls partial -->
+      <rect x="290" y="130" width="140" height="60"/>
+      <!-- Left wall full, right wall partial -->
+      <line x1="290" y1="100" x2="290" y2="130"/>
+      <line x1="430" y1="145" x2="430" y2="130"/>
+      <!-- Roof trusses (partial) -->
+      <polyline points="290,100 360,68 420,90"/>
+      <line x1="360" y1="68" x2="360" y2="130"/>
+      <line x1="325" y1="84" x2="325" y2="130"/>
+      <!-- Exposed brick hatching left -->
+      <line x1="300" y1="130" x2="300" y2="190"/>
+      <line x1="310" y1="130" x2="310" y2="190"/>
+      <!-- Door opening -->
+      <path d="M340 190 L340 155 Q360 145 380 155 L380 190"/>
+      <!-- Window openings (no glass yet) -->
+      <rect x="295" y="138" width="30" height="22" rx="2"/>
+      <rect x="397" y="138" width="28" height="22" rx="2"/>
+      <!-- Scaffolding -->
+      <line x1="430" y1="190" x2="430" y2="80"/>
+      <line x1="460" y1="190" x2="460" y2="80"/>
+      <line x1="428" y1="155" x2="462" y2="155"/>
+      <line x1="428" y1="125" x2="462" y2="125"/>
+      <line x1="428" y1="95" x2="462" y2="95"/>
+      <!-- Diagonal braces -->
+      <line x1="430" y1="155" x2="460" y2="125"/>
+      <line x1="430" y1="125" x2="460" y2="95"/>
+    </g>
+    <!-- Worker on scaffolding plank -->
+    <g class="village worker-plank" style="transform-origin:445px 120px">
+      <!-- plank -->
+      <line class="village" x1="428" y1="120" x2="462" y2="120" stroke-width="3"/>
+      <!-- stick figure -->
+      <circle class="village" cx="447" cy="109" r="5"/>
+      <line class="village" x1="447" y1="114" x2="447" y2="128"/>
+      <line class="village" x1="438" y1="120" x2="456" y2="120"/>
+      <line class="village" x1="447" y1="128" x2="440" y2="138"/>
+      <line class="village" x1="447" y1="128" x2="454" y2="138"/>
+      <!-- raised arm with trowel -->
+      <line class="village" x1="456" y1="120" x2="464" y2="112"/>
+      <rect class="village" x="463" y="108" width="8" height="4" rx="1" transform="rotate(-30 463 108)"/>
+    </g>
+
+    <!-- ── Tower crane (right of centre) ── -->
+    <g class="village draw" style="--len:800;--dur:1.6s;--delay:1s">
+      <!-- Mast -->
+      <line x1="530" y1="190" x2="530" y2="30"/>
+      <!-- Jib (horizontal arm) -->
+      <line x1="480" y1="35" x2="640" y2="35"/>
+      <!-- Counter-jib -->
+      <line x1="480" y1="35" x2="480" y2="50"/>
+      <!-- Cab box -->
+      <rect x="518" y="42" width="24" height="20" rx="2"/>
+      <!-- Tie lines -->
+      <line x1="530" y1="30" x2="480" y2="50"/>
+      <line x1="530" y1="30" x2="640" y2="50"/>
+      <line x1="640" y1="35" x2="640" y2="50"/>
+    </g>
+    <!-- Crane hook (animated swing) -->
+    <g class="crane-hook">
+      <line class="village" x1="600" y1="35" x2="600" y2="100"/>
+      <path class="village" d="M594 100 Q594 112 600 112 Q606 112 606 100"/>
+      <!-- Load block -->
+      <rect class="village" x="590" y="96" width="20" height="10" rx="2"/>
+    </g>
+    <!-- Crane blink light -->
+    <circle class="village blink" cx="530" cy="26" r="4" fill="var(--blue-600)" stroke="none"/>
+
+    <!-- ── Walking builder ── -->
+    <g class="village builder" style="transform-origin:490px 175px">
+      <!-- head -->
+      <circle cx="490" cy="155" r="7"/>
+      <!-- hard hat -->
+      <path d="M483 155 Q490 144 497 155"/>
+      <line x1="481" y1="155" x2="499" y2="155"/>
+      <!-- body -->
+      <line x1="490" y1="162" x2="490" y2="178"/>
+      <!-- arms -->
+      <line x1="490" y1="166" x2="480" y2="172"/>
+      <line x1="490" y1="166" x2="500" y2="172"/>
+      <!-- legs -->
+      <line x1="490" y1="178" x2="484" y2="190"/>
+      <line x1="490" y1="178" x2="496" y2="190"/>
+    </g>
+
+    <!-- ── Cement mixer (far right) ── -->
+    <g class="village draw" style="--len:900;--dur:1.8s;--delay:1.1s">
+      <!-- Truck body -->
+      <rect x="620" y="148" width="120" height="38" rx="4"/>
+      <!-- Cab -->
+      <path d="M620 148 L620 120 Q628 108 650 108 L680 108 L680 148"/>
+      <!-- Cab window -->
+      <path d="M626 120 L626 108 Q632 102 648 102 L674 102 L674 120 Z"/>
+      <!-- Wheels -->
+      <circle cx="650" cy="190" r="16"/>
+      <circle cx="650" cy="190" r="7"/>
+      <circle cx="710" cy="190" r="16"/>
+      <circle cx="710" cy="190" r="7"/>
+      <!-- Exhaust pipe -->
+      <line x1="688" y1="108" x2="688" y2="92"/>
+    </g>
+    <!-- Drum -->
+    <g class="drum">
+      <ellipse class="village" cx="670" cy="148" rx="28" ry="22"/>
+      <line class="village" x1="645" y1="142" x2="695" y2="154"/>
+      <line class="village" x1="645" y1="154" x2="695" y2="142"/>
+    </g>
+    <!-- Exhaust smoke -->
+    <circle class="village-light smoke" cx="688" cy="87" r="5"/>
+    <circle class="village-light smoke smoke-2" cx="692" cy="82" r="4"/>
+
+    <!-- ── Materials pile ── -->
+    <g class="village draw" style="--len:300;--dur:0.8s;--delay:1.3s">
+      <!-- Bricks stack -->
+      <rect x="240" y="178" width="40" height="10"/>
+      <rect x="242" y="170" width="36" height="8"/>
+      <rect x="244" y="163" width="32" height="7"/>
+      <!-- Lines on bricks -->
+      <line x1="255" y1="170" x2="255" y2="188"/>
+      <line x1="268" y1="170" x2="268" y2="188"/>
+      <!-- Sand pile -->
+      <path d="M200 190 Q215 170 230 190 Z"/>
+    </g>
+
+    <!-- ── Ground line ── -->
+    <line class="ground" x1="0" y1="192" x2="800" y2="192"/>
+
+    <!-- Grass tufts -->
+    <g class="village-light">
+      <path d="M20 192 Q22 185 24 192"/>
+      <path d="M140 192 Q143 186 146 192"/>
+      <path d="M220 192 Q223 185 226 192"/>
+      <path d="M500 192 Q503 186 506 192"/>
+      <path d="M560 192 Q563 185 566 192"/>
+      <path d="M750 192 Q753 186 756 192"/>
+      <path d="M780 192 Q783 185 786 192"/>
+    </g>
+
+  </svg>
+  </div>
+
+  <!-- Text -->
+  <div class="text-block">
+    <h1>Something new is being built</h1>
+    <p>We'll be back very soon — check back shortly.</p>
+  </div>
+
+  <p class="footer">© 2026 consept.io</p>
+</div>
+</body>
 </html>
